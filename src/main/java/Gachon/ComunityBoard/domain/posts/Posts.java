@@ -55,4 +55,15 @@ public class Posts {
         this.DeleteYn = false;
     }
 
+    public void update(String title ,String content, String event, int needPeopleNumber, int location){
+        // 초기화된값이랑 다른값이들어오면 update된 값이므로 수정을하지만
+        //초기화된 값이랑 같은값이들어오면 update가 안된거기때문에 그대로 둔다.
+        if(title !=null) this.title=title;
+        if(content !=null)this.content = content;
+        if(event !=null)this.event=event;
+        if(needPeopleNumber !=0)this.NeedPeopleNumber = needPeopleNumber;
+        if(location !=0)this.location = location;
+    }
+
+
 }
