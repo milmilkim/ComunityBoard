@@ -65,5 +65,9 @@ public class Posts {
         if(location !=0)this.location = location;
     }
 
+    public void delete(boolean deleteYn){
+        DeleteYn = deleteYn;
+    }
+
 
 }

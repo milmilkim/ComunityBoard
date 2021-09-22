@@ -1,6 +1,7 @@
 package Gachon.ComunityBoard.controller;
 
 
+import Gachon.ComunityBoard.controller.dto.PostsDeleteRequestDTO;
 import Gachon.ComunityBoard.controller.dto.PostsSaveRequestDTO;
 import Gachon.ComunityBoard.controller.dto.PostsUpdateRequestDTO;
 import Gachon.ComunityBoard.service.posts.PostsService;
@@ -23,6 +24,14 @@ public class PostsApiController {
     @PutMapping("/api/board/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDTO updateDTO){
         return postsService.update(id,updateDTO);
+    }
+
+
+    //게시글 삭제
+    @PutMapping("/api/board/posts/{id}/isDelete")
+    public Long delete(@PathVariable Long id, @RequestBody PostsDeleteRequestDTO deleteDTO){
+        postsService.delete(id, deleteDTO);
+        return id;
     }
 
 

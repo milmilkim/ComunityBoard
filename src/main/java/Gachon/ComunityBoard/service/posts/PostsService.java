@@ -1,6 +1,7 @@
 package Gachon.ComunityBoard.service.posts;
 
 
+import Gachon.ComunityBoard.controller.dto.PostsDeleteRequestDTO;
 import Gachon.ComunityBoard.controller.dto.PostsSaveRequestDTO;
 import Gachon.ComunityBoard.controller.dto.PostsUpdateRequestDTO;
 import Gachon.ComunityBoard.domain.posts.Posts;
@@ -26,6 +27,13 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = "+id));
         posts.update(updateDTO.getTitle(),updateDTO.getContent(), updateDTO.getEvent(), updateDTO.getNeedPeopleNum(), updateDTO.getLocation());
         return id;
+    }
+
+    @Transactional
+    public void delete(Long id, PostsDeleteRequestDTO deleteDTO){
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 게시물이 없습니다 id = "+id));
+        posts.delete(deleteDTO.getDelteYN());
     }
 
 

@@ -1,6 +1,7 @@
 package Gachon.ComunityBoard.controller;
 
 
+import Gachon.ComunityBoard.controller.dto.PostsDeleteRequestDTO;
 import Gachon.ComunityBoard.controller.dto.PostsSaveRequestDTO;
 import Gachon.ComunityBoard.controller.dto.PostsUpdateRequestDTO;
 import Gachon.ComunityBoard.domain.posts.Posts;
@@ -108,6 +109,7 @@ public class PostsApiControllerTest {
         Assertions.assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         List<Posts> all = postsRepository.findAll();
+        System.out.println("all is empty?"+ all.isEmpty());
 
         //수정된 부분
         Assertions.assertThat(all.get(0).getTitle()).isEqualTo(updateTitle);
@@ -115,10 +117,43 @@ public class PostsApiControllerTest {
 
         //수정하지 않은부분
         Assertions.assertThat(all.get(0).getNeedPeopleNumber()).isEqualTo(needPeople);
-
-
     }
 
+
+    @Test
+    public void 게시글_삭제() throws Exception{
+        //given
+        String title = "제목테스트";
+        String writer = "vaaa";
+        String content = "Content good!";
+        String event = "baseball";
+        int needPeople = 2;
+        int location = 10;
+
+
+        // 저장하고 저장된 Posts를 반환해서 savedPosts에 저장
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
+                .build());
+
+        Long Id = savedPosts.getIdx();
+        PostsDeleteRequestDTO deleteDTO = new PostsDeleteRequestDTO();
+        String url = "http://localhost:"+ port+"/api/board/posts/"+Id+"/isDelete";
+
+        HttpEntity<PostsDeleteRequestDTO> deletedEntity = new HttpEntity<>(deleteDTO);
+        //when
+        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT,deletedEntity,Long.class);
+
+
+        //then
+        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        List<Posts> all = postsRepository.findAllNotDeleted();
+        System.out.println("all is empty?"+ all.isEmpty());
+
+        Assertions.assertThat(all.isEmpty()).isEqualTo(true);
+
+    }
 
 
 
