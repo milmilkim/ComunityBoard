@@ -22,12 +22,12 @@ public class Users {
 
     private String picture;
 
-    @Column(length = 500)
+    @Column(length = 200)
     private String SelfIntroduction;
 
 //    @Column
 //    private List<User> follower;
 
-    private int followerCnt;
+//    private int followerCnt;
 
 }

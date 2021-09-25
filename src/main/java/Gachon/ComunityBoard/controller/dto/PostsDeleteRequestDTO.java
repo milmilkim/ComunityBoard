@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 public class PostsDeleteRequestDTO {
-
+    //삭제요청시 쓰이는 DTO
     private boolean deleteYN;
 
     public PostsDeleteRequestDTO(){

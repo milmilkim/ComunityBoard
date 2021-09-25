@@ -86,7 +86,8 @@ public class PostsApiControllerTest {
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location).eventTime(null)
                 .build());
-        System.out.println(savedPosts.getCreatedDate());
+        System.out.println("createdTime="+savedPosts.getCreatedDate());
+        System.out.println("modifiedTime="+savedPosts.getModifiedDate());
 
 
 
@@ -138,6 +139,7 @@ public class PostsApiControllerTest {
                 .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
                 .build());
 
+        //저장된 게시글의 id를 반아옴
         Long Id = savedPosts.getIdx();
         PostsDeleteRequestDTO deleteDTO = new PostsDeleteRequestDTO();
         String url = "http://localhost:"+ port+"/api/board/posts/"+Id+"/isDelete";
@@ -145,6 +147,7 @@ public class PostsApiControllerTest {
 
         //delete_yn값을 true로 바꿔줌
         HttpEntity<PostsDeleteRequestDTO> deletedEntity = new HttpEntity<>(deleteDTO);
+
         //when
         ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT,deletedEntity,Long.class);
 
@@ -158,6 +161,43 @@ public class PostsApiControllerTest {
 
         //만약 비어있는게 true면 통과
         Assertions.assertThat(all.isEmpty()).isEqualTo(true);
+
+    }
+
+
+    @Test
+    public void 검색테스트(){
+        //given
+        String title = "제목테스트";
+        String writer = "vaaa";
+        String content = "Content good!";
+        String event = "야구";
+        String event2 = "basketball";
+        int needPeople = 2;
+        int location = 10;
+
+        postsRepository.save(Posts.builder()
+                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
+                .build());
+        postsRepository.save(Posts.builder()
+                .title(title).writer("김야구").content(content).event(event2).needPeopleNumber(needPeople).location(location)
+                .build());
+        postsRepository.save(Posts.builder()
+                .title(title).writer("park").content(content).event(event2).needPeopleNumber(needPeople).location(location)
+                .build());
+
+
+        //when
+        String toFineKeyword = "야구";
+
+        List<Posts> postsList = postsRepository.findByKeyword(toFineKeyword);
+
+
+        //then
+        Assertions.assertThat(postsList.get(0).getEvent()).contains(toFineKeyword);
+        System.out.println("postsList = " + postsList);
+
+        Assertions.assertThat(postsList.size()).isEqualTo(2);
 
     }
 

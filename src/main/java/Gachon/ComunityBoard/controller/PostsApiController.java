@@ -1,10 +1,7 @@
 package Gachon.ComunityBoard.controller;
 
 
-import Gachon.ComunityBoard.controller.dto.PostsDeleteRequestDTO;
-import Gachon.ComunityBoard.controller.dto.PostsResponseDTO;
-import Gachon.ComunityBoard.controller.dto.PostsSaveRequestDTO;
-import Gachon.ComunityBoard.controller.dto.PostsUpdateRequestDTO;
+import Gachon.ComunityBoard.controller.dto.*;
 import Gachon.ComunityBoard.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +39,18 @@ public class PostsApiController {
         postsService.delete(idx, deleteDTO);
         return idx;
     }
+
+
+    // 임시로 해보는것들
+
+//    @GetMapping("/api/board/posts/{keyword}")
+//    public PostsListResponseDTO
+
+
+
+
+
+
 
 
 
