@@ -16,16 +16,21 @@ public class PostsUpdateRequestDTO { // Update요청할때 쓰는 DTO
     private String content;
     private String event;
     private int needPeopleNum;
-    private int location;
+    private double location_x;
+    private double location_y;
+
+    private String location_name;
     private LocalDateTime modifiedEventTime;
 
     @Builder
-    public PostsUpdateRequestDTO(String title,String content, String event, int needPeopleNumber, int location, LocalDateTime modifiedEventTime){
+    public PostsUpdateRequestDTO(String title,String content, String event, int needPeopleNumber, double location_x,double location_y, String location_name, LocalDateTime modifiedEventTime){
         this.title = title;
         this.content = content;
         this.event = event;
         this.needPeopleNum = needPeopleNumber;
-        this.location = location;
+        this.location_x = location_x;
+        this.location_y = location_y;
+        this.location_name = location_name;
         this.modifiedEventTime = modifiedEventTime;
 
     }

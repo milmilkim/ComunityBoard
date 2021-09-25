@@ -49,10 +49,15 @@ public class PostsApiControllerTest {
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
-        int location = 10;
+        double location_x = 10;
+        double location_y = 10;
+        String location_name = "가천대학교 운동장";
 
         PostsSaveRequestDTO saveRequestDTO = PostsSaveRequestDTO.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
+                .title(title).writer(writer).content(content).event(event)
+                .needPeopleNumber(needPeople)
+                .location_x(location_x).location_y(location_y)
+                .location_name(location_name)
                 .build();
 
         String url = "http://localhost:"+ port+"/api/board/posts";
@@ -84,7 +89,7 @@ public class PostsApiControllerTest {
 
         // 저장하고 저장된 Posts를 반환해서 savedPosts에 저장
         Posts savedPosts = postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location).eventTime(null)
+                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople)
                 .build());
         System.out.println("createdTime="+savedPosts.getCreatedDate());
         System.out.println("modifiedTime="+savedPosts.getModifiedDate());
@@ -96,12 +101,13 @@ public class PostsApiControllerTest {
         String updateContene = "수정된 내용";
         String updateEvent = "updated BaseBall";
         int updateNum =5;
-        int updatelocation =1;
+        double updatelocation =1;
 
         String url = "http://localhost:"+ port+"/api/board/posts/"+updateId;
 
         PostsUpdateRequestDTO updateDTO = PostsUpdateRequestDTO.builder()
-                .title(updateTitle).content(updateContene).event(updateEvent).needPeopleNumber(updateNum).location(updatelocation).modifiedEventTime(null)
+                .title(updateTitle).content(updateContene).event(updateEvent).needPeopleNumber(updateNum)
+                .location_x(updatelocation).location_y(updatelocation).modifiedEventTime(null)
                 .build();
 
         HttpEntity<PostsUpdateRequestDTO> updatedEntity = new HttpEntity<>(updateDTO);
@@ -131,12 +137,12 @@ public class PostsApiControllerTest {
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
-        int location = 10;
+        double location = 10;
 
 
         // 저장하고 저장된 Posts를 반환해서 savedPosts에 저장
         Posts savedPosts = postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
+                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople)
                 .build());
 
         //저장된 게시글의 id를 반아옴
@@ -174,16 +180,16 @@ public class PostsApiControllerTest {
         String event = "야구";
         String event2 = "basketball";
         int needPeople = 2;
-        int location = 10;
+
 
         postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
+                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople)
                 .build());
         postsRepository.save(Posts.builder()
-                .title(title).writer("김야구").content(content).event(event2).needPeopleNumber(needPeople).location(location)
+                .title(title).writer("김야구").content(content).event(event2).needPeopleNumber(needPeople)
                 .build());
         postsRepository.save(Posts.builder()
-                .title(title).writer("park").content(content).event(event2).needPeopleNumber(needPeople).location(location)
+                .title(title).writer("park").content(content).event(event2).needPeopleNumber(needPeople)
                 .build());
 
 

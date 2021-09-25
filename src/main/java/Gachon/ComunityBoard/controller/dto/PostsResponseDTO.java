@@ -16,7 +16,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private String event;
     private int NeedPeopleNumber;
     private boolean IsRecruiting;
-    private int location;
+    private String locationName;
     private LocalDateTime EventTime;
 
 
@@ -28,7 +28,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.event = posts.getEvent();
         this.NeedPeopleNumber = posts.getNeedPeopleNumber();
         this.IsRecruiting = posts.isIsRecruiting();
-        this.location = posts.getLocation();
+        this.locationName = posts.getLocationName();
 //        this.EventTime = posts.getEventTime();
     }
 

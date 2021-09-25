@@ -37,7 +37,7 @@ public class PostsService {
     public Long update(Long idx, PostsUpdateRequestDTO updateDTO){
         Posts posts = postsRepository.findById(idx)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. idx = "+idx));
-        posts.update(updateDTO.getTitle(),updateDTO.getContent(), updateDTO.getEvent(), updateDTO.getNeedPeopleNum(), updateDTO.getLocation(), updateDTO.getModifiedEventTime());
+        posts.update(updateDTO.getTitle(),updateDTO.getContent(), updateDTO.getEvent(), updateDTO.getNeedPeopleNum(), updateDTO.getLocation_x(),updateDTO.getLocation_y(),updateDTO.getLocation_name(), updateDTO.getModifiedEventTime());
         return idx;
     }
 

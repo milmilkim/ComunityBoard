@@ -31,10 +31,10 @@ public class PostsRepositoryTest {
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
-        int location = 10;
+        double location = 10;
 
         postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
+                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location_x(location).location_y(location)
                 .build());
 
         //when
@@ -58,16 +58,16 @@ public class PostsRepositoryTest {
         String event = "야구";
         String event2 = "basketball";
         int needPeople = 2;
-        int location = 10;
+        double location = 10;
 
         postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location(location)
+                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location_x(location).location_y(location)
                 .build());
         postsRepository.save(Posts.builder()
-                .title(title).writer("김야구").content(content).event(event2).needPeopleNumber(needPeople).location(location)
+                .title(title).writer("김야구").content(content).event(event2).needPeopleNumber(needPeople).location_x(location).location_y(location)
                 .build());
         postsRepository.save(Posts.builder()
-                .title(title).writer("park").content(content).event(event2).needPeopleNumber(needPeople).location(location)
+                .title(title).writer("park").content(content).event(event2).needPeopleNumber(needPeople).location_x(location).location_y(location)
                 .build());
 
 
