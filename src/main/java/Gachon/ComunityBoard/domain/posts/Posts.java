@@ -40,11 +40,9 @@ public class Posts extends BaseTimeEntity {
     // 운동위치 지역명
     private String locationName;
 
-
-
     // 프론트에서 날짜와 시간선택으로 LocalDateTime으로 받아옴
     private LocalDateTime EventTime;    //운동할 시간
-
+    //삭제여부
     private boolean DeleteYn;
 
     @Builder

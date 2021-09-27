@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
+
     private String title;
     private String writer;
     private String content;
@@ -19,6 +20,8 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
     private double location_y;
     private String location_name;
     private LocalDateTime EventTime;
+
+
 
     @Builder
     public PostsSaveRequestDTO(String title, String writer,String content, String event, int needPeopleNumber, double location_x ,double location_y,String location_name ,LocalDateTime EventTime){
