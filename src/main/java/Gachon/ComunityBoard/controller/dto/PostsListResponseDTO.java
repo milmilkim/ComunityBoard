@@ -13,12 +13,13 @@ public class PostsListResponseDTO {
     // 그 조회화면에 보여질것만 담아옴
     // 혹은 검색시 나올 리스트.
 
-
+    private Long id;
     private String title;
     private String writer;
     private String event;
 
     public PostsListResponseDTO(Posts post){
+        this.id = post.getIdx();
         this.title = post.getTitle();
         this.writer = post.getWriter();
         this.event = post.getEvent();

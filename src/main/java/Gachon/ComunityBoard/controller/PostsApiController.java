@@ -34,8 +34,14 @@ public class PostsApiController {
 
 
     //게시글 삭제
+//    @PutMapping("/api/board/posts/{idx}/isDelete")
+//    public Long delete(@PathVariable Long idx, @RequestBody PostsDeleteRequestDTO deleteDTO){
+//        postsService.delete(idx, deleteDTO);
+//        return idx;
+//    }
     @PutMapping("/api/board/posts/{idx}/isDelete")
-    public Long delete(@PathVariable Long idx, @RequestBody PostsDeleteRequestDTO deleteDTO){
+    public Long delete(@PathVariable Long idx){
+        PostsDeleteRequestDTO deleteDTO = new PostsDeleteRequestDTO();
         postsService.delete(idx, deleteDTO);
         return idx;
     }

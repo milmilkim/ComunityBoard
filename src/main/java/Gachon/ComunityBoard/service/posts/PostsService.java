@@ -75,3 +75,4 @@ public class PostsService {
 
 
 }
+//http://localhost:8080/api/board?page=0&size=5

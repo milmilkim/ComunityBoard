@@ -1,5 +1,7 @@
 package Gachon.ComunityBoard.domain.posts;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +23,8 @@ public interface PostsRepository extends JpaRepository<Posts,Long> {
     @Query("SELECT p FROM Posts p WHERE p.title LIKE %:keyword% OR p.writer LIKE %:keyword% OR p.event LIKE %:keyword% AND p.DeleteYn = false")
     List<Posts> findByKeyword(@Param("keyword") String keyword);
 
+    //Paging 함수선
+    @Override
+    @Query("SELECT p FROM Posts p WHERE p.DeleteYn = false")
+    Page<Posts> findAll(Pageable pageable);
 }
