@@ -26,33 +26,35 @@ public class PagingController {
 //        PageRequest pageRequest = PageRequest.of(0, 5);
 //        return postsRepository.findAll(pageRequest);
 //    }
-    @GetMapping("/api/board")
-    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
-        Page<Posts> postsList = postsRepository.findAll(pageRequest);
 
-        Page<PostsListResponseDTO> pagingList = postsList.map(
-                posts -> new PostsListResponseDTO(
-                        posts
-                )
-        );
-        return pagingList;
-    }
+    // 잠시만 동결 PostsService로 이동
+//    @GetMapping("/api/board")
+//    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
+//        Page<Posts> postsList = postsRepository.findAll(pageRequest);
+//
+//        Page<PostsListResponseDTO> pagingList = postsList.map(
+//                posts -> new PostsListResponseDTO(
+//                        posts
+//                )
+//        );
+//        return pagingList;
+//    }
     ////http://localhost:8080/api/board?page=0&size=5 이런식으로 호출
 
 
     // 더미데이터 생성
-    @PostConstruct
-    public void initializing(){
-
-        for (int i = 0; i < 100; i++) {
-            Posts posts = Posts.builder()
-                    .title(i+"번 게시글")
-                    .content(i+"내용내용")
-                    .writer("김승환")
-                    .build();
-            postsRepository.save(posts);
-        }
-    }
+//    @PostConstruct
+//    public void initializing(){
+//
+//        for (int i = 0; i < 100; i++) {
+//            Posts posts = Posts.builder()
+//                    .title(i+"번 게시글")
+//                    .content(i+"내용내용")
+//                    .writer("김승환")
+//                    .build();
+//            postsRepository.save(posts);
+//        }
+//    }
 
 
 }

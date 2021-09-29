@@ -23,13 +23,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'junit:junit:4.12'
+	//머스테치
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
+	// OAuth 의존성(소셜로그인시 필요)
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-
+	// 세션저장소 DB로 (Implemetation인지는나중에 확인)
+	implementation 'org.springframework.session:spring-session-jdbc'
 
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'com.h2database:h2' //RuntimeOnly인지 implemetation인지?

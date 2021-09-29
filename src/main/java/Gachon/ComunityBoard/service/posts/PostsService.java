@@ -5,6 +5,10 @@ import Gachon.ComunityBoard.controller.dto.*;
 import Gachon.ComunityBoard.domain.posts.Posts;
 import Gachon.ComunityBoard.domain.posts.PostsRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,6 +75,18 @@ public class PostsService {
                 .map(PostsListResponseDTO::new)
                 .collect(Collectors.toList());
 
+    }
+
+    @Transactional
+    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
+        Page<Posts> postsList = postsRepository.findAll(pageRequest);
+
+        Page<PostsListResponseDTO> pagingList = postsList.map(
+                posts -> new PostsListResponseDTO(
+                        posts
+                )
+        );
+        return pagingList;
     }
 
 
