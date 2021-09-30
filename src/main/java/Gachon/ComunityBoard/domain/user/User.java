@@ -21,7 +21,6 @@ public class User extends BaseTimeEntity {
     private String name;
 
     // 이메일
-    @Column(nullable = false)
     private String email;
 
     // 프로필 사진
