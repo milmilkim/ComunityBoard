@@ -69,25 +69,38 @@ public class PostsService {
     }
 
     // 게시글 검색 -> 아직 컨트롤러 못만듬.
-    @Transactional
-    public List<PostsListResponseDTO> findByKeyword(String keyword){
-        return postsRepository.findByKeyword(keyword).stream()
-                .map(PostsListResponseDTO::new)
-                .collect(Collectors.toList());
+//    @Transactional
+//    public List<PostsListResponseDTO> findByKeyword(String keyword){
+//        return postsRepository.findByKeyword(keyword).stream()
+//                .map(PostsListResponseDTO::new)
+//                .collect(Collectors.toList());
+//
+//    }
 
-    }
+    //paging하는걸 어디에둬야하나
+//    @Transactional
+//    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
+//        Page<Posts> postsList = postsRepository.findAll(pageRequest);
+//
+//        Page<PostsListResponseDTO> pagingList = postsList.map(
+//                posts -> new PostsListResponseDTO(
+//                        posts
+//                )
+//        );
+//        return pagingList;
+//    }
 
-    @Transactional
-    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
-        Page<Posts> postsList = postsRepository.findAll(pageRequest);
-
-        Page<PostsListResponseDTO> pagingList = postsList.map(
-                posts -> new PostsListResponseDTO(
-                        posts
-                )
-        );
-        return pagingList;
-    }
+//    @Transactional
+//    public Page<PostsListResponseDTO> SearchingPaging(String keyword,@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
+//        Page<Posts> postsList = postsRepository.findByKeyword(keyword,pageRequest);
+//
+//        Page<PostsListResponseDTO> pagingList = postsList.map(
+//                posts -> new PostsListResponseDTO(
+//                        posts
+//                )
+//        );
+//        return pagingList;
+//    }
 
 
 }

@@ -2,8 +2,13 @@ package Gachon.ComunityBoard.controller;
 
 
 import Gachon.ComunityBoard.controller.dto.*;
+import Gachon.ComunityBoard.domain.posts.Posts;
 import Gachon.ComunityBoard.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -52,7 +57,11 @@ public class PostsApiController {
 //    @GetMapping("/api/board/posts/{keyword}")
 //    public PostsListResponseDTO
 
-
+//    @GetMapping("/api/board")
+//    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
+//        Page<PostsListResponseDTO> pagingList =postsService.paging()
+//        return pagingList;
+//    }
 
 
 

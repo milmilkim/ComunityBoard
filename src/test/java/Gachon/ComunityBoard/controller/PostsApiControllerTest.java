@@ -171,41 +171,41 @@ public class PostsApiControllerTest {
     }
 
 
-    @Test
-    public void 검색테스트(){
-        //given
-        String title = "제목테스트";
-        String writer = "vaaa";
-        String content = "Content good!";
-        String event = "야구";
-        String event2 = "basketball";
-        int needPeople = 2;
-
-
-        postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople)
-                .build());
-        postsRepository.save(Posts.builder()
-                .title(title).writer("김야구").content(content).event(event2).needPeopleNumber(needPeople)
-                .build());
-        postsRepository.save(Posts.builder()
-                .title(title).writer("park").content(content).event(event2).needPeopleNumber(needPeople)
-                .build());
-
-
-        //when
-        String toFineKeyword = "야구";
-
-        List<Posts> postsList = postsRepository.findByKeyword(toFineKeyword);
-
-
-        //then
-        Assertions.assertThat(postsList.get(0).getEvent()).contains(toFineKeyword);
-        System.out.println("postsList = " + postsList);
-
-        Assertions.assertThat(postsList.size()).isEqualTo(2);
-
-    }
+//    @Test
+//    public void 검색테스트(){
+//        //given
+//        String title = "제목테스트";
+//        String writer = "vaaa";
+//        String content = "Content good!";
+//        String event = "야구";
+//        String event2 = "basketball";
+//        int needPeople = 2;
+//
+//
+//        postsRepository.save(Posts.builder()
+//                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople)
+//                .build());
+//        postsRepository.save(Posts.builder()
+//                .title(title).writer("김야구").content(content).event(event2).needPeopleNumber(needPeople)
+//                .build());
+//        postsRepository.save(Posts.builder()
+//                .title(title).writer("park").content(content).event(event2).needPeopleNumber(needPeople)
+//                .build());
+//
+//
+//        //when
+//        String toFineKeyword = "야구";
+//
+//        List<Posts> postsList = postsRepository.findByKeyword(toFineKeyword);
+//
+//
+//        //then
+//        Assertions.assertThat(postsList.get(0).getEvent()).contains(toFineKeyword);
+//        System.out.println("postsList = " + postsList);
+//
+//        Assertions.assertThat(postsList.size()).isEqualTo(2);
+//
+//    }
 
 
 

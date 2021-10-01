@@ -27,4 +27,8 @@ public interface PostsRepository extends JpaRepository<Posts,Long> {
     @Override
     @Query("SELECT p FROM Posts p WHERE p.DeleteYn = false")
     Page<Posts> findAll(Pageable pageable);
+
+    // 잠깐 테스트용 => 검색된 게시물들 페이징
+    @Query("SELECT p FROM Posts p WHERE p.title LIKE %:keyword% OR p.writer LIKE %:keyword% OR p.event LIKE %:keyword% AND p.DeleteYn = false")
+    Page<Posts> findByKeywordPaging(@Param("keyword") String keyword,Pageable pageable);
 }
