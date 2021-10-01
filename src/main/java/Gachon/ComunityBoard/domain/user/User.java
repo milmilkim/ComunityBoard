@@ -19,6 +19,9 @@ public class User extends BaseTimeEntity {
     // 이름
     @Column(nullable = false)
     private String name;
+    // 닉네임
+    @Column(nullable = false)
+    private String nickname;
 
     // 이메일
     private String email;
@@ -38,6 +41,7 @@ public class User extends BaseTimeEntity {
     @Builder
     public User(String name, String email,String picture, String selfIntroduction,Role role){
         this.name = name;
+        this.nickname = "익명"; //처음 닉네임은 익명
         this.email = email;
         this.picture = picture;
         this.SelfIntroduction = selfIntroduction;
@@ -51,12 +55,11 @@ public class User extends BaseTimeEntity {
         return this;
     }
 
-    // 여기는 나중에 자기소개까지 업데이트하는거
-//    public User updateSelfIntroduction(String selfIntroduction){
-//        this.SelfIntroduction = selfIntroduction;
-//
-//        return this;
-//    }
+    // 여기는 나중에 유저정보 업데이트하는거 (사진은 추후 수정)
+    public void updateSelfIntroduction(String nickname,String selfIntroduction){
+        this.nickname = nickname;
+        this.SelfIntroduction = selfIntroduction;
+    }
 
 
     public String getRoleKey(){
