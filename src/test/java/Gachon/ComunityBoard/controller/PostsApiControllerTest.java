@@ -54,7 +54,7 @@ public class PostsApiControllerTest {
         String location_name = "가천대학교 운동장";
 
         PostsSaveRequestDTO saveRequestDTO = PostsSaveRequestDTO.builder()
-                .title(title).writer(writer).content(content).event(event)
+                .title(title).content(content).event(event)
                 .needPeopleNumber(needPeople)
                 .location_x(location_x).location_y(location_y)
                 .location_name(location_name)

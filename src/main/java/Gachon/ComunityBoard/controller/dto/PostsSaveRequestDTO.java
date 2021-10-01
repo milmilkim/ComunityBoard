@@ -24,9 +24,8 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
 
 
     @Builder
-    public PostsSaveRequestDTO(String title, String writer,String content, String event, int needPeopleNumber, double location_x ,double location_y,String location_name ,LocalDateTime EventTime){
+    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNumber, double location_x ,double location_y,String location_name ,LocalDateTime EventTime){
         this.title = title;
-        this.writer = writer;
         this.content = content;
         this.event = event;
         this.needPeopleNum = needPeopleNumber;
@@ -34,6 +33,10 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
         this.location_y = location_y;
         this.location_name = location_name;
         this.EventTime = EventTime;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
     public Posts toEntity(){ // Posts객체를 이 DTO안의 내용을 바탕으로 만들어서 반환
