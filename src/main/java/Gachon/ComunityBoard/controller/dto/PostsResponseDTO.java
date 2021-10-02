@@ -12,6 +12,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private Long idx;
     private String title;
     private String writer;
+    private String email;
     private String content;
     private String event;
     private int NeedPeopleNumber;
@@ -24,6 +25,8 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.idx = posts.getIdx();
         this.title = posts.getTitle();
         this.writer = posts.getWriter();
+        this.email = posts.getEmail();
+
         this.content = posts.getContent();
         this.event = posts.getEvent();
         this.NeedPeopleNumber = posts.getNeedPeopleNumber();

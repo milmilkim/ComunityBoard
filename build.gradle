@@ -36,10 +36,11 @@ dependencies {
 	// 세션저장소 DB로 (Implemetation인지는나중에 확인)
 	implementation 'org.springframework.session:spring-session-jdbc'
 
+
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'com.h2database:h2' //RuntimeOnly인지 implemetation인지?
 
-
+	implementation 'org.apache.commons:commons-lang3'
 }
 
 test {

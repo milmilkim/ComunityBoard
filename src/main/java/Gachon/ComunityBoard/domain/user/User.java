@@ -4,8 +4,10 @@ import Gachon.ComunityBoard.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.*;
+import java.security.MessageDigest;
 
 @Getter
 @NoArgsConstructor
@@ -41,7 +43,8 @@ public class User extends BaseTimeEntity {
     @Builder
     public User(String name, String email,String picture, String selfIntroduction,Role role){
         this.name = name;
-        this.nickname = "익명"; //처음 닉네임은 익명
+//        this.nickname = "익명"; //처음 닉네임은 익명
+        this.nickname = RandomStringUtils.randomAlphanumeric(10);
         this.email = email;
         this.picture = picture;
         this.SelfIntroduction = selfIntroduction;
@@ -65,6 +68,8 @@ public class User extends BaseTimeEntity {
     public String getRoleKey(){
         return this.role.getKey();
     }
+
+
 
 
 

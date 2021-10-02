@@ -13,6 +13,7 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
 
     private String title;
     private String writer;
+    private String email;
     private String content;
     private String event;
     private int needPeopleNum;
@@ -35,13 +36,14 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
         this.EventTime = EventTime;
     }
 
-    public void setWriter(String writer) {
+    public void setWriterAndEamil(String writer,String email) {
         this.writer = writer;
+        this.email = email;
     }
 
     public Posts toEntity(){ // Posts객체를 이 DTO안의 내용을 바탕으로 만들어서 반환
         return Posts.builder()
-                .title(title).writer(writer).content(content).event(event)
+                .title(title).writer(writer).email(email).content(content).event(event)
                 .needPeopleNumber(needPeopleNum).location_x(location_x)
                 .location_y(location_y).location_name(location_name).eventTime(EventTime)
                 .build();

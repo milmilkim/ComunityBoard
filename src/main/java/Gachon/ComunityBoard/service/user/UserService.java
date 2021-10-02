@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -30,6 +32,16 @@ public class UserService {
                 .orElseThrow(()-> new IllegalArgumentException("해당 유저가 없습니다. email = "+email));
         user.updateSelfIntroduction(updateDTO.getNickname(),updateDTO.getSelfIntroduction());
         return email;
+    }
+
+    // 닉네임 중복점사
+    public boolean nicknameCheck(String nickname){
+        Optional<User> user = userRepository.findByNickname(nickname);
+        if(user.isPresent()){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 

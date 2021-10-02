@@ -22,6 +22,8 @@ public class Posts extends BaseTimeEntity {
 
     private String writer;  //게시물 작성자
 
+    private String email;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content; //모집 소개글
 
@@ -46,9 +48,10 @@ public class Posts extends BaseTimeEntity {
     private boolean DeleteYn;
 
     @Builder
-    public Posts(String title, String writer,String content, String event, int needPeopleNumber, double location_x,double location_y, String location_name, LocalDateTime eventTime){
+    public Posts(String title, String writer,String email,String content, String event, int needPeopleNumber, double location_x,double location_y, String location_name, LocalDateTime eventTime){
         this.title=title;
         this.writer=writer;
+        this.email = email;
         this.content = content;
         this.event=event;
         this.NeedPeopleNumber = needPeopleNumber;
