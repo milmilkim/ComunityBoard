@@ -4,6 +4,7 @@ package Gachon.ComunityBoard.controller;
 import Gachon.ComunityBoard.config.auth.dto.SessionUser;
 import Gachon.ComunityBoard.controller.dto.*;
 import Gachon.ComunityBoard.domain.posts.Posts;
+import Gachon.ComunityBoard.domain.posts.PostsRepository;
 import Gachon.ComunityBoard.domain.user.User;
 import Gachon.ComunityBoard.domain.user.UserRepository;
 import Gachon.ComunityBoard.service.posts.PostsService;
@@ -23,6 +24,7 @@ public class PostsApiController {
     private final HttpSession httpSession;
     private final UserRepository userRepository;
     private final PostsService postsService;
+    private final PostsRepository postsRepository;
 
     // 게시글 등록
     @PostMapping("/api/board/posts")
@@ -41,8 +43,20 @@ public class PostsApiController {
 
     // 게시글 조회
     @GetMapping("/api/board/posts/{idx}")
-    public PostsResponseDTO findById(@PathVariable Long idx){
-        return postsService.findById(idx);
+    public PostsResponseDTO findById(@PathVariable Long idx,HttpSession session){
+        SessionUser user = (SessionUser) session.getAttribute("user");
+        String postsEmail = postsRepository.findById(idx).get().getEmail();
+
+        PostsResponseDTO postsResponseDTO = postsService.findById(idx);
+        // 만약 같으면 자신이쓴글이라는거랑 같이 리턴
+        if(user.getEmail().equals(postsEmail)){
+            postsResponseDTO.setMine(true);
+            return postsResponseDTO;
+        }else {
+            postsResponseDTO.setMine(false);
+            return postsResponseDTO;
+        }
+
     }
 
 

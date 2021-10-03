@@ -19,6 +19,11 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private boolean IsRecruiting;
     private String locationName;
     private LocalDateTime EventTime;
+    private boolean isMine;
+
+    public void setMine(boolean isMine){
+        this.isMine = isMine;
+    }
 
 
     public PostsResponseDTO(Posts posts){

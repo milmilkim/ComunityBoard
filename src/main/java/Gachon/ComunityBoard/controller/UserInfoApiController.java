@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserInfoApiController {
     private final UserService userService;
 
+    // 유저정보 조회
     @GetMapping("/api/user/userInfo/{email}")
     public UserResponseDTO findByEmail(@PathVariable String email){
         return userService.findByEamil(email);
