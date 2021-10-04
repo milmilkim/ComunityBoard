@@ -11,6 +11,10 @@ public class UserResponseDTO {
     private String email;
     private String picture;
     private String selfIntroduction;
+    private String livingPlace;
+    private String preference1;
+    private String preference2;
+    private String preference3;
 
     private boolean mine;
 
@@ -23,5 +27,9 @@ public class UserResponseDTO {
         this.email = user.getEmail();
         this.picture = user.getPicture();
         this.selfIntroduction = user.getSelfIntroduction();
+        this.livingPlace = user.getLivingPlace();
+        this.preference1 = user.getPreference1();
+        this.preference2 = user.getPreference2();
+        this.preference3 = user.getPreference3();
     }
 }

@@ -30,7 +30,7 @@ public class PagingController {
     // 잠시만 동결 PostsService로 이동
     //전체 게시물 역순으로보여줌
     @GetMapping("/")
-    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
+    public Page<PostsListResponseDTO> paging(@PageableDefault(size = 12, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
         Page<Posts> postsList = postsRepository.findAll(pageRequest);
 
         Page<PostsListResponseDTO> pagingList = postsList.map(
@@ -43,7 +43,7 @@ public class PagingController {
     ////http://localhost:8080/api/board?page=0&size=5 이런식으로 호출
 
     @GetMapping("/api/board/search/{keyword}")
-    public Page<PostsListResponseDTO> searchedPaging(@PathVariable("keyword") String keyword, @PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
+    public Page<PostsListResponseDTO> searchedPaging(@PathVariable("keyword") String keyword, @PageableDefault(size = 12, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
         Page<Posts> postsList = postsRepository.findByKeywordPaging(keyword,pageRequest);
 
         Page<PostsListResponseDTO> pagingList = postsList.map(
