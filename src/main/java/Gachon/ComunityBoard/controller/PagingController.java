@@ -28,7 +28,8 @@ public class PagingController {
 //    }
 
     // 잠시만 동결 PostsService로 이동
-    @GetMapping("/api/board")
+    //전체 게시물 역순으로보여줌
+    @GetMapping("/")
     public Page<PostsListResponseDTO> paging(@PageableDefault(size = 5, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
         Page<Posts> postsList = postsRepository.findAll(pageRequest);
 

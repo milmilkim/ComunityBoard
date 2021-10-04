@@ -49,15 +49,15 @@ public class PostsApiControllerTest {
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
-        double location_x = 10;
-        double location_y = 10;
-        String location_name = "가천대학교 운동장";
+        String location_x = "10";
+        String location_y = "10";
+        String placeName = "가천대학교 운동장";
 
         PostsSaveRequestDTO saveRequestDTO = PostsSaveRequestDTO.builder()
                 .title(title).content(content).event(event)
                 .needPeopleNumber(needPeople)
                 .location_x(location_x).location_y(location_y)
-                .location_name(location_name)
+                .placeName(placeName)
                 .build();
 
         String url = "http://localhost:"+ port+"/api/board/posts";
@@ -101,7 +101,7 @@ public class PostsApiControllerTest {
         String updateContene = "수정된 내용";
         String updateEvent = "updated BaseBall";
         int updateNum =5;
-        double updatelocation =1;
+        String updatelocation ="1";
 
         String url = "http://localhost:"+ port+"/api/board/posts/"+updateId;
 

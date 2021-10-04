@@ -31,6 +31,15 @@ public class User extends BaseTimeEntity {
     // 프로필 사진
     private String picture;
 
+    //지역
+    private String livingPlace;
+
+    // 선호 운동 1 2 3
+    private String preference1;
+    private String preference2;
+    private String preference3;
+
+
     //자기소개글
     @Column(length = 200)
     private String SelfIntroduction;
@@ -41,15 +50,22 @@ public class User extends BaseTimeEntity {
     private Role role;
 
     @Builder
-    public User(String name, String email,String picture, String selfIntroduction,Role role){
+    public User(String name, String email,String picture,String livingPlace
+            ,String preference1, String preference2, String preference3,String selfIntroduction,Role role){
         this.name = name;
-//        this.nickname = "익명"; //처음 닉네임은 익명
+        // 초기 닉네임은 랜덤글자 10글자
         this.nickname = RandomStringUtils.randomAlphanumeric(10);
         this.email = email;
         this.picture = picture;
+        this.livingPlace = livingPlace;
+        this.preference1 = preference1;
+        this.preference2 = preference2;
+        this.preference3 = preference3;
         this.SelfIntroduction = selfIntroduction;
         this.role = role;
     }
+
+
     //여기는 구글 로그인시 구글계정정보에따라 바뀌는거 업데이트되는지
     public User update(String name,String picture){
         this.name= name;
@@ -59,8 +75,13 @@ public class User extends BaseTimeEntity {
     }
 
     // 여기는 나중에 유저정보 업데이트하는거 (사진은 추후 수정)
-    public void updateSelfIntroduction(String nickname,String selfIntroduction){
+    public void updateInfo(String nickname,String livingPlace
+            ,String preference1, String preference2, String preference3,String selfIntroduction){
         this.nickname = nickname;
+        this.livingPlace = livingPlace;
+        this.preference1 = preference1;
+        this.preference2 = preference2;
+        this.preference3 = preference3;
         this.SelfIntroduction = selfIntroduction;
     }
 

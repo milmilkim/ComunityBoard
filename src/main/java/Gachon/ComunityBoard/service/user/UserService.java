@@ -30,7 +30,7 @@ public class UserService {
     public String update(String email, UserUpdateRequestDTO updateDTO){
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new IllegalArgumentException("해당 유저가 없습니다. email = "+email));
-        user.updateSelfIntroduction(updateDTO.getNickname(),updateDTO.getSelfIntroduction());
+        user.updateInfo(updateDTO.getNickname(),updateDTO.getLivingPlace(),updateDTO.getPreference1(),updateDTO.getPreference2(),updateDTO.getPreference3(),updateDTO.getSelfIntroduction());
         return email;
     }
 

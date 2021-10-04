@@ -41,7 +41,10 @@ public class PostsService {
     public Long update(Long idx, PostsUpdateRequestDTO updateDTO){
         Posts posts = postsRepository.findById(idx)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. idx = "+idx));
-        posts.update(updateDTO.getTitle(),updateDTO.getContent(), updateDTO.getEvent(), updateDTO.getNeedPeopleNum(), updateDTO.getLocation_x(),updateDTO.getLocation_y(),updateDTO.getLocation_name(), updateDTO.getModifiedEventTime());
+        posts.update(updateDTO.getTitle(),updateDTO.getContent(), updateDTO.getEvent(),
+                updateDTO.getNeedPeopleNum(), updateDTO.getLocation_x(),updateDTO.getLocation_y(),
+                updateDTO.getAddressName(),updateDTO.getRegion1Depth(),updateDTO.getRegion2Depth(),
+                updateDTO.getPlaceName(), updateDTO.getModifiedEventTime());
         return idx;
     }
 
@@ -52,6 +55,13 @@ public class PostsService {
         Posts posts = postsRepository.findById(idx)
                 .orElseThrow(()-> new IllegalArgumentException("해당 게시물이 없습니다 id = "+idx));
         posts.delete(deleteDTO.getDelteYN());
+    }
+
+    @Transactional
+    public void endRecruiting(Long idx, PostsEndRecruitingDTO recruitingDTO){
+        Posts posts = postsRepository.findById(idx)
+                .orElseThrow(()-> new IllegalArgumentException("해당 게시물이 없습니다 id = "+idx));
+        posts.endRecruiting(recruitingDTO.getIsRecruiting());
     }
 
 

@@ -12,6 +12,12 @@ public class UserResponseDTO {
     private String picture;
     private String selfIntroduction;
 
+    private boolean mine;
+
+    public void setMine(boolean mine) {
+        this.mine = mine;
+    }
+
     public UserResponseDTO(User user){
         this.nickname = user.getNickname();
         this.email = user.getEmail();

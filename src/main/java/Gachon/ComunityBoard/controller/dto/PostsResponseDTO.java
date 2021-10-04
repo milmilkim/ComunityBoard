@@ -16,9 +16,12 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private String content;
     private String event;
     private int NeedPeopleNumber;
-    private boolean IsRecruiting;
-    private String locationName;
-    private LocalDateTime EventTime;
+    private boolean isRecruiting;
+    private String addressName;
+//    private String region1Depth;
+//    private String region2Depth;
+    private String placeName;
+    private String EventTime;
     private boolean isMine;
 
     public void setMine(boolean isMine){
@@ -35,9 +38,10 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.content = posts.getContent();
         this.event = posts.getEvent();
         this.NeedPeopleNumber = posts.getNeedPeopleNumber();
-        this.IsRecruiting = posts.isIsRecruiting();
-        this.locationName = posts.getLocationName();
-//        this.EventTime = posts.getEventTime();
+        this.isRecruiting = posts.isRecruiting();
+        this.addressName = posts.getAddressName();
+        this.placeName = posts.getPlaceName();
+        this.EventTime = posts.getEventTime();
     }
 
 

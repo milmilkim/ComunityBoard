@@ -80,6 +80,14 @@ public class PostsApiController {
         return idx;
     }
 
+    @PutMapping("/api/board/posts/{idx}/endRecruiting")
+    public Long endRecruiting(@PathVariable Long idx){
+        PostsEndRecruitingDTO recruitingDTO = new PostsEndRecruitingDTO();
+
+        postsService.endRecruiting(idx, recruitingDTO);
+        return idx;
+    }
+
 
     // 임시로 해보는것들
 

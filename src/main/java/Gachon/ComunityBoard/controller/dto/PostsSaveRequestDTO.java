@@ -17,22 +17,29 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
     private String content;
     private String event;
     private int needPeopleNum;
-    private double location_x;
-    private double location_y;
-    private String location_name;
-    private LocalDateTime EventTime;
+    private String location_x;
+    private String location_y;
+    private String addressName;
+    private String region1Depth;
+    private String region2Depth;
+    private String placeName;
+    private String EventTime;
 
 
 
     @Builder
-    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNumber, double location_x ,double location_y,String location_name ,LocalDateTime EventTime){
+    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNumber, String location_x ,String location_y,
+                               String addressName,String region1Depth,String region2Depth,String placeName ,String EventTime){
         this.title = title;
         this.content = content;
         this.event = event;
         this.needPeopleNum = needPeopleNumber;
         this.location_x = location_x;
         this.location_y = location_y;
-        this.location_name = location_name;
+        this.addressName = addressName;
+        this.region1Depth = region1Depth;
+        this.region2Depth = region2Depth;
+        this.placeName = placeName;
         this.EventTime = EventTime;
     }
 
@@ -45,7 +52,8 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
         return Posts.builder()
                 .title(title).writer(writer).email(email).content(content).event(event)
                 .needPeopleNumber(needPeopleNum).location_x(location_x)
-                .location_y(location_y).location_name(location_name).eventTime(EventTime)
+                .location_y(location_y).addressName(addressName).region1Depth(region1Depth)
+                .region2Depth(region2Depth).placeName(placeName).eventTime(EventTime)
                 .build();
     }
 
