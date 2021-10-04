@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                    .antMatchers("/","/css/**","/js/**","/images/**","/board").permitAll()// 모두에게 허용
 //                    .antMatchers("/api/**").hasRole(Role.USER.name()) // User권한가진사람한테만 허용
 //                    .anyRequest().authenticated() //나머지페이지는 인증된 사람에게만 허용
-                    .antMatchers("/api/board/**").authenticated()
+                    .antMatchers("/api/board/**","/api/user/userInfo/**").authenticated()
                     .anyRequest().permitAll()
                 .and()
                     .logout()

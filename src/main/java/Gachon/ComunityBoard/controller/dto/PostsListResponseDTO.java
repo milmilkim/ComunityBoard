@@ -2,10 +2,14 @@ package Gachon.ComunityBoard.controller.dto;
 
 
 import Gachon.ComunityBoard.domain.posts.Posts;
+import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+/**
+ * 게시판 리스트로 쭈욱 나열할때 전달되는DTO입니다
+ * */
 
+@ApiModel(value = "",description = "")
 @Getter
 public class PostsListResponseDTO {
     //게시판 처음부분에 들어가면

@@ -8,6 +8,7 @@ import Gachon.ComunityBoard.domain.posts.PostsRepository;
 import Gachon.ComunityBoard.domain.user.User;
 import Gachon.ComunityBoard.domain.user.UserRepository;
 import Gachon.ComunityBoard.service.posts.PostsService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,7 @@ public class PostsApiController {
     private final PostsRepository postsRepository;
 
     // 게시글 등록
+    @ApiOperation(value = "게시글 등록",notes = "게시글을 등록합니다")
     @PostMapping("/api/board/posts")
     public Long save(@RequestBody PostsSaveRequestDTO saveDTO){
         // 세션에서 지금 로그인한 유저의 정보를 가져옴
@@ -42,6 +44,7 @@ public class PostsApiController {
 
 
     // 게시글 조회
+    @ApiOperation(value = "게시글 조회",notes = "idx에 해당하는 게시물을 조회합니다")
     @GetMapping("/api/board/posts/{idx}")
     public PostsResponseDTO findById(@PathVariable Long idx,HttpSession session){
         SessionUser user = (SessionUser) session.getAttribute("user");
@@ -61,6 +64,7 @@ public class PostsApiController {
 
 
     // 게시글 수정
+    @ApiOperation(value = "게시글 수정",notes = "idx에 해당하는 게시물을 넘겨받은 DTO를 기반으로 수정합니다")
     @PutMapping("/api/board/posts/{idx}")
     public Long update(@PathVariable Long idx, @RequestBody PostsUpdateRequestDTO updateDTO){
         return postsService.update(idx,updateDTO);
@@ -73,6 +77,8 @@ public class PostsApiController {
 //        postsService.delete(idx, deleteDTO);
 //        return idx;
 //    }
+    // 게시글 삭제
+    @ApiOperation(value = "게시글 삭제",notes = "idx에 해당하는 게시글을 삭제합니다")
     @PutMapping("/api/board/posts/{idx}/isDelete")
     public Long delete(@PathVariable Long idx){
         PostsDeleteRequestDTO deleteDTO = new PostsDeleteRequestDTO();
@@ -80,6 +86,7 @@ public class PostsApiController {
         return idx;
     }
 
+    @ApiOperation(value = "게시물 모집 종료",notes = "idx에 해당하는 게시물의 모집을 종료합니다.")
     @PutMapping("/api/board/posts/{idx}/endRecruiting")
     public Long endRecruiting(@PathVariable Long idx){
         PostsEndRecruitingDTO recruitingDTO = new PostsEndRecruitingDTO();
