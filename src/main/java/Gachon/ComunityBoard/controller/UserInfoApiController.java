@@ -1,6 +1,7 @@
 package Gachon.ComunityBoard.controller;
 
 
+import Gachon.ComunityBoard.config.auth.LoginUser;
 import Gachon.ComunityBoard.config.auth.dto.SessionUser;
 import Gachon.ComunityBoard.controller.dto.UserResponseDTO;
 import Gachon.ComunityBoard.controller.dto.UserUpdateRequestDTO;
@@ -54,6 +55,15 @@ public class UserInfoApiController {
     public boolean nicknameDuplicateCheck(@PathVariable String nickname){
         // false 리턴되면 중복된것. true가 리턴되면 중복안된것
         return userService.nicknameCheck(nickname);
+    }
+
+    @GetMapping("/api/loginedUser")
+    public String LoginedUserEmail(@LoginUser SessionUser user){
+        if(user != null){
+            return user.getEmail();
+        }else{
+            return "";
+        }
     }
 
 

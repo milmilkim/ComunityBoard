@@ -1,6 +1,8 @@
 package Gachon.ComunityBoard.controller;
 
 
+import Gachon.ComunityBoard.config.auth.LoginUser;
+import Gachon.ComunityBoard.config.auth.dto.SessionUser;
 import Gachon.ComunityBoard.controller.dto.PostsListResponseDTO;
 import Gachon.ComunityBoard.domain.posts.Posts;
 import Gachon.ComunityBoard.domain.posts.PostsRepository;
