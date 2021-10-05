@@ -31,9 +31,9 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
     @ApiModelProperty(value = "필요인원")
     private int needPeopleNum;
     @ApiModelProperty(value = "운동위치 x좌표")
-    private String location_x;
+    private String locationX;
     @ApiModelProperty(value = "운동위치 y좌표")
-    private String location_y;
+    private String locationY;
     @ApiModelProperty(value = "운동위치 주소명", example = "경기도 성남시 수정구~~~")
     private String addressName;
     private String region1Depth;
@@ -46,14 +46,14 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
 
 
     @Builder
-    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNumber, String location_x ,String location_y,
+    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNumber, String locationX ,String locationY,
                                String addressName,String region1Depth,String region2Depth,String placeName ,String EventTime){
         this.title = title;
         this.content = content;
         this.event = event;
         this.needPeopleNum = needPeopleNumber;
-        this.location_x = location_x;
-        this.location_y = location_y;
+        this.locationX = locationX;
+        this.locationY = locationY;
         this.addressName = addressName;
         this.region1Depth = region1Depth;
         this.region2Depth = region2Depth;
@@ -69,8 +69,8 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
     public Posts toEntity(){ // Posts객체를 이 DTO안의 내용을 바탕으로 만들어서 반환
         return Posts.builder()
                 .title(title).writer(writer).email(email).content(content).event(event)
-                .needPeopleNumber(needPeopleNum).location_x(location_x)
-                .location_y(location_y).addressName(addressName).region1Depth(region1Depth)
+                .needPeopleNumber(needPeopleNum).location_x(locationX)
+                .location_y(locationY).addressName(addressName).region1Depth(region1Depth)
                 .region2Depth(region2Depth).placeName(placeName).eventTime(EventTime)
                 .build();
     }

@@ -3,6 +3,7 @@ package Gachon.ComunityBoard.controller.dto;
 
 import Gachon.ComunityBoard.domain.posts.Posts;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 
 /**
@@ -21,6 +22,8 @@ public class PostsListResponseDTO {
     private String title;
     private String writer;
     private String event;
+    private String locationX;
+    private String locationY;
     private String region1Depth;
     private String region2Depth;
     private String placeName;
@@ -31,6 +34,8 @@ public class PostsListResponseDTO {
         this.title = post.getTitle();
         this.writer = post.getWriter();
         this.event = post.getEvent();
+        this.locationX = post.getLocationX();
+        this.locationY = post.getLocationY();
         this.region1Depth = post.getRegion1Depth();
         this.region2Depth = post.getRegion2Depth();
         this.placeName = post.getPlaceName();
