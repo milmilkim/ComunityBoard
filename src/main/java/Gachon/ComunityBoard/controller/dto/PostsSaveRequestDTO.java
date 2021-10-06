@@ -41,13 +41,13 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
     @ApiModelProperty(value = "운동위치 장소명",example = "가천대 운동장")
     private String placeName;
     @ApiModelProperty(value = "운동시간")
-    private String EventTime;
+    private String eventTime;
 
 
 
     @Builder
     public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNumber, String locationX ,String locationY,
-                               String addressName,String region1Depth,String region2Depth,String placeName ,String EventTime){
+                               String addressName,String region1Depth,String region2Depth,String placeName ,String eventTime){
         this.title = title;
         this.content = content;
         this.event = event;
@@ -58,7 +58,7 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
         this.region1Depth = region1Depth;
         this.region2Depth = region2Depth;
         this.placeName = placeName;
-        this.EventTime = EventTime;
+        this.eventTime = eventTime;
     }
 
     public void setWriterAndEamil(String writer,String email) {
@@ -71,7 +71,7 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
                 .title(title).writer(writer).email(email).content(content).event(event)
                 .needPeopleNumber(needPeopleNum).location_x(locationX)
                 .location_y(locationY).addressName(addressName).region1Depth(region1Depth)
-                .region2Depth(region2Depth).placeName(placeName).eventTime(EventTime)
+                .region2Depth(region2Depth).placeName(placeName).eventTime(eventTime)
                 .build();
     }
 
