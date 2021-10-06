@@ -37,7 +37,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     @ApiModelProperty(value = "운동위치 장소명",example = "가천대 운동장")
     private String placeName;
     @ApiModelProperty(value = "운동시간")
-    private String EventTime;
+    private String eventTime;
     @ApiModelProperty(value = "내가쓴글 여부")
     private boolean isMine;
 
@@ -59,7 +59,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.isRecruiting = posts.isRecruiting();
         this.addressName = posts.getAddressName();
         this.placeName = posts.getPlaceName();
-        this.EventTime = posts.getEventTime();
+        this.eventTime = posts.getEventTime();
     }
 
 

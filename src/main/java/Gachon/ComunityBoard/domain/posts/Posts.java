@@ -45,7 +45,7 @@ public class Posts extends BaseTimeEntity {
     // 장소이름
     private String placeName;
     // 프론트에서 날짜와 시간선택으로 String으로 받아옴
-    private String EventTime;    //운동할 시간
+    private String eventTime;    //운동할 시간
     //삭제여부
     private boolean DeleteYn;
 
@@ -65,7 +65,7 @@ public class Posts extends BaseTimeEntity {
         this.region1Depth = region1Depth;
         this.region2Depth = region2Depth;
         this.placeName = placeName;
-        this.EventTime = eventTime;
+        this.eventTime = eventTime;
         this.isRecruiting=true;
         this.DeleteYn = false;
     }
@@ -84,7 +84,7 @@ public class Posts extends BaseTimeEntity {
         this.region1Depth = region1Depth;
         this.region2Depth = region2Depth;
         this.placeName = placeName;
-        this.EventTime = modifiedEventTime;
+        this.eventTime = modifiedEventTime;
 
     }
 
