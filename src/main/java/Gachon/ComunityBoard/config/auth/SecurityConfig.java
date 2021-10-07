@@ -19,16 +19,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()
-//                    .antMatchers("/","/css/**","/js/**","/images/**","/board").permitAll()// 모두에게 허용
+                    .antMatchers("/api/board","/","/css/**","/js/**","/images/**","/board").permitAll()// 모두에게 허용
 //                    .antMatchers("/api/**").hasRole(Role.USER.name()) // User권한가진사람한테만 허용
 //                    .anyRequest().authenticated() //나머지페이지는 인증된 사람에게만 허용
-                    .antMatchers("/api/board/**","/api/user/userInfo/**").authenticated()
+                    .antMatchers("/api/board/posts/**","/api/user/userInfo/**").authenticated()
                     .anyRequest().permitAll()
                 .and()
                     .logout()
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/api/board")
                 .and()
                     .oauth2Login()
+                    .defaultSuccessUrl("/api/board")
                         .userInfoEndpoint()
                             .userService(customOAuth2UserService);
     }

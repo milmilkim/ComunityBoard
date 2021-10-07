@@ -23,6 +23,8 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
     private String writer;
     @ApiModelProperty(value = "작성자email")
     private String email;
+    @ApiModelProperty(value = "작성자 프로필")
+    private String userPicture; // 작성자 사진
     @ApiModelProperty(value = "게시글 내용",example = "가천대 운동장에서 축구할 사람 2명 모십니다")
     private String content;
     @ApiModelProperty(value = "운동 종목",example = "야구")
@@ -60,9 +62,10 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
         this.eventTime = eventTime;
     }
 
-    public void setWriterAndEamil(String writer,String email) {
+    public void setWriterAndEamil(String writer,String email,String userPicture) {
         this.writer = writer;
         this.email = email;
+        this.userPicture = userPicture;
     }
 
     public Posts toEntity(){ // Posts객체를 이 DTO안의 내용을 바탕으로 만들어서 반환
@@ -70,7 +73,7 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
                 .title(title).writer(writer).email(email).content(content).event(event)
                 .needPeopleNum(needPeopleNum).locationX(locationX)
                 .locationY(locationY).addressName(addressName).region1Depth(region1Depth)
-                .region2Depth(region2Depth).placeName(placeName).eventTime(eventTime)
+                .region2Depth(region2Depth).placeName(placeName).eventTime(eventTime).userPicture(userPicture)
                 .build();
     }
 

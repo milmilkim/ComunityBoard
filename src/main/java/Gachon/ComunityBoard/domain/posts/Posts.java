@@ -21,6 +21,8 @@ public class Posts extends BaseTimeEntity {
 
     private String writer;  //게시물 작성자
 
+    private String userPicture; // 작성자 사진
+
     private String email;
 
     @Column(columnDefinition = "TEXT", nullable = false)
@@ -52,9 +54,11 @@ public class Posts extends BaseTimeEntity {
     @Builder
     public Posts(String title, String writer,String email,String content, String event
             ,int needPeopleNum, String locationX,String locationY
-            ,String addressName,String region1Depth,String region2Depth,String placeName, String eventTime){
+            ,String addressName,String region1Depth,String region2Depth,String placeName
+            , String eventTime, String userPicture){
         this.title=title;
         this.writer=writer;
+        this.userPicture = userPicture;
         this.email = email;
         this.content = content;
         this.event=event;

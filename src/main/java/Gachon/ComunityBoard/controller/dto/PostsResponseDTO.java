@@ -19,6 +19,8 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private String writer;
     @ApiModelProperty(value = "작성자email")
     private String email;
+    @ApiModelProperty(value = "작성자 프로필")
+    private String userPicture; // 작성자 사진
     @ApiModelProperty(value = "게시글 내용",example = "가천대 운동장에서 축구할 사람 2명 모십니다")
     private String content;
     @ApiModelProperty(value = "운동 종목",example = "야구")
@@ -29,6 +31,10 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private boolean isRecruiting;
     @ApiModelProperty(value = "운동위치 주소명", example = "경기도 성남시 수정구~~~")
     private String addressName;
+    @ApiModelProperty(value = "00시",example = "00시")
+    private String region1Depth;
+    @ApiModelProperty(value = "00구",example = "00구")
+    private String region2Depth;
     @ApiModelProperty(value = "운동위치 x좌표")
     private String locationX;
     @ApiModelProperty(value = "운동위치 y좌표")
@@ -49,6 +55,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.idx = posts.getIdx();
         this.title = posts.getTitle();
         this.writer = posts.getWriter();
+        this.userPicture = posts.getUserPicture();
         this.email = posts.getEmail();
         this.locationX = posts.getLocationX();
         this.locationY = posts.getLocationY();
@@ -57,6 +64,8 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.needPeopleNum = posts.getNeedPeopleNum();
         this.isRecruiting = posts.isRecruiting();
         this.addressName = posts.getAddressName();
+        this.region1Depth = posts.getRegion1Depth();
+        this.region2Depth = posts.getRegion2Depth();
         this.placeName = posts.getPlaceName();
         this.eventTime = posts.getEventTime();
     }

@@ -22,23 +22,29 @@ public class PostsListResponseDTO {
     private String title;
     private String writer;
     private String event;
+    private String userPicture;
     private String locationX;
     private String locationY;
     private String region1Depth;
     private String region2Depth;
     private String placeName;
+    private int needPeopleNum;
+    private String eventTime;
     private boolean isRecruiting; // 이거로 모집중여부 판단
 
     public PostsListResponseDTO(Posts post){
         this.id = post.getIdx();
         this.title = post.getTitle();
         this.writer = post.getWriter();
+        this.userPicture = post.getUserPicture();
         this.event = post.getEvent();
         this.locationX = post.getLocationX();
         this.locationY = post.getLocationY();
         this.region1Depth = post.getRegion1Depth();
         this.region2Depth = post.getRegion2Depth();
         this.placeName = post.getPlaceName();
+        this.needPeopleNum = post.getNeedPeopleNum();
+        this.eventTime = post.getEventTime();
         this.isRecruiting = post.isRecruiting();
     }
 
