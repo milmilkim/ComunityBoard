@@ -9,7 +9,6 @@ import lombok.Getter;
 /**
  * 게시글 조회시 프론트로 전달되는 DTO입니다
  * */
-@ApiModel(value = "",description = "")
 @Getter
 public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
 
@@ -25,7 +24,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     @ApiModelProperty(value = "운동 종목",example = "야구")
     private String event;
     @ApiModelProperty(value = "필요인원")
-    private int NeedPeopleNumber;
+    private int needPeopleNum;
     @ApiModelProperty(value = "모집중 여부")
     private boolean isRecruiting;
     @ApiModelProperty(value = "운동위치 주소명", example = "경기도 성남시 수정구~~~")
@@ -55,7 +54,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.locationY = posts.getLocationY();
         this.content = posts.getContent();
         this.event = posts.getEvent();
-        this.NeedPeopleNumber = posts.getNeedPeopleNumber();
+        this.needPeopleNum = posts.getNeedPeopleNum();
         this.isRecruiting = posts.isRecruiting();
         this.addressName = posts.getAddressName();
         this.placeName = posts.getPlaceName();

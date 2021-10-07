@@ -42,9 +42,9 @@ public class PostsService {
         Posts posts = postsRepository.findById(idx)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. idx = "+idx));
         posts.update(updateDTO.getTitle(),updateDTO.getContent(), updateDTO.getEvent(),
-                updateDTO.getNeedPeopleNum(), updateDTO.getLocation_x(),updateDTO.getLocation_y(),
+                updateDTO.getNeedPeopleNum(), updateDTO.getLocationX(),updateDTO.getLocationY(),
                 updateDTO.getAddressName(),updateDTO.getRegion1Depth(),updateDTO.getRegion2Depth(),
-                updateDTO.getPlaceName(), updateDTO.getModifiedEventTime());
+                updateDTO.getPlaceName(), updateDTO.getEventTime());
         return idx;
     }
 
