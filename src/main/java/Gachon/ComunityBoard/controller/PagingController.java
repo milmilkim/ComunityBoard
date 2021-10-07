@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -33,7 +34,7 @@ public class PagingController {
     // 잠시만 동결 PostsService로 이동
     //전체 게시물 역순으로보여줌
     @ApiOperation(value = "전체게시물 조회(페이징)",notes = "전체 게시물을 한페이지에 12개씩 생성시간 역순으로 보여줍니다")
-    @GetMapping("/")
+    @GetMapping("/api/board")
     public Page<PostsListResponseDTO> paging(@PageableDefault(size = 12, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
         Page<Posts> postsList = postsRepository.findAll(pageRequest);
 
@@ -59,33 +60,40 @@ public class PagingController {
         return pagingList;
     }
 
+    @GetMapping("/api/board/all")
+    public List<PostsListResponseDTO> findAllDesc(){
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
     //http://localhost:8080/api/board/search/야구?page=2
     //http://localhost:8080/api/board/search/야구
     //@Param으로했다가 2시간삽질하고 @PathVariable로바꿔서해결 JPA만세세
 
 
     // 더미데이터 생성
-//    @PostConstruct
-//    public void initializing(){
-//
-//        for (int i = 0; i < 100; i++) {
-//            Posts posts = Posts.builder()
-//                    .title(i+"번 게시글")
-//                    .content(i+"내용내용")
-//                    .writer("김승환")
-//                    .build();
-//            postsRepository.save(posts);
-//        }
-//        for (int i = 0; i < 13; i++) {
-//            Posts posts = Posts.builder()
-//                    .title(i+"번 게시글")
-//                    .content(i+"내용내용")
-//                    .writer("김승환")
-//                    .event("야구야구")
-//                    .build();
-//            postsRepository.save(posts);
-//        }
-//    }
+    @PostConstruct
+    public void initializing(){
+
+        for (int i = 0; i < 100; i++) {
+            Posts posts = Posts.builder()
+                    .title(i+"번 게시글")
+                    .content(i+"내용내용")
+                    .writer("김승환")
+                    .build();
+            postsRepository.save(posts);
+        }
+        for (int i = 0; i < 13; i++) {
+            Posts posts = Posts.builder()
+                    .title(i+"번 게시글")
+                    .content(i+"내용내용")
+                    .writer("김승환")
+                    .event("야구야구")
+                    .build();
+            postsRepository.save(posts);
+        }
+    }
 
 
 }

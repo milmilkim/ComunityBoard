@@ -79,7 +79,7 @@ public class PostsApiControllerTest {
 
         PostsSaveRequestDTO saveRequestDTO = PostsSaveRequestDTO.builder()
                 .title(title).content(content).event(event)
-                .needPeopleNumber(needPeople)
+                .needPeopleNum(needPeople)
                 .locationX(location_x).locationY(location_y)
                 .placeName(placeName)
                 .build();
@@ -118,7 +118,7 @@ public class PostsApiControllerTest {
 
         // 저장하고 저장된 Posts를 반환해서 savedPosts에 저장
         Posts savedPosts = postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople)
+                .title(title).writer(writer).content(content).event(event).needPeopleNum(needPeople)
                 .build());
         System.out.println("createdTime="+savedPosts.getCreatedDate());
         System.out.println("modifiedTime="+savedPosts.getModifiedDate());
@@ -135,8 +135,8 @@ public class PostsApiControllerTest {
         String url = "http://localhost:"+ port+"/api/board/posts/"+updateId;
 
         PostsUpdateRequestDTO updateDTO = PostsUpdateRequestDTO.builder()
-                .title(updateTitle).content(updateContene).event(updateEvent).needPeopleNumber(updateNum)
-                .location_x(updatelocation).location_y(updatelocation).modifiedEventTime(null)
+                .title(updateTitle).content(updateContene).event(updateEvent).needPeopleNum(updateNum)
+                .locationX(updatelocation).locationY(updatelocation).eventTime(null)
                 .build();
 
         HttpEntity<PostsUpdateRequestDTO> updatedEntity = new HttpEntity<>(updateDTO);
@@ -154,7 +154,7 @@ public class PostsApiControllerTest {
         //수정된 부분
         Assertions.assertThat(all.get(0).getTitle()).isEqualTo(updateTitle);
         Assertions.assertThat(all.get(0).getContent()).isEqualTo(updateContene);
-        Assertions.assertThat(all.get(0).getNeedPeopleNumber()).isEqualTo(updateNum);
+        Assertions.assertThat(all.get(0).getNeedPeopleNum()).isEqualTo(updateNum);
     }
 
 
@@ -172,7 +172,7 @@ public class PostsApiControllerTest {
 
         // 저장하고 저장된 Posts를 반환해서 savedPosts에 저장
         Posts savedPosts = postsRepository.save(Posts.builder()
-                .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople)
+                .title(title).writer(writer).content(content).event(event).needPeopleNum(needPeople)
                 .build());
 
         //저장된 게시글의 id를 반아옴
