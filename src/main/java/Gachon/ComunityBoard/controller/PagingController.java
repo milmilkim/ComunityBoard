@@ -72,28 +72,28 @@ public class PagingController {
     //@Param으로했다가 2시간삽질하고 @PathVariable로바꿔서해결 JPA만세세
 
 
-    // 더미데이터 생성
-    @PostConstruct
-    public void initializing(){
-
-        for (int i = 0; i < 100; i++) {
-            Posts posts = Posts.builder()
-                    .title(i+"번 게시글")
-                    .content(i+"내용내용")
-                    .writer("김승환")
-                    .build();
-            postsRepository.save(posts);
-        }
-        for (int i = 0; i < 13; i++) {
-            Posts posts = Posts.builder()
-                    .title(i+"번 게시글")
-                    .content(i+"내용내용")
-                    .writer("김승환")
-                    .event("야구야구")
-                    .build();
-            postsRepository.save(posts);
-        }
-    }
+//    // 더미데이터 생성
+//    @PostConstruct
+//    public void initializing(){
+//
+//        for (int i = 0; i < 100; i++) {
+//            Posts posts = Posts.builder()
+//                    .title(i+"번 게시글")
+//                    .content(i+"내용내용")
+//                    .writer("김승환")
+//                    .build();
+//            postsRepository.save(posts);
+//        }
+//        for (int i = 0; i < 13; i++) {
+//            Posts posts = Posts.builder()
+//                    .title(i+"번 게시글")
+//                    .content(i+"내용내용")
+//                    .writer("김승환")
+//                    .event("야구야구")
+//                    .build();
+//            postsRepository.save(posts);
+//        }
+//    }
 
 
 }
