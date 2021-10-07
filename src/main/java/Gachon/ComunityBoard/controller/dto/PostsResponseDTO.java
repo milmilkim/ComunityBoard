@@ -29,6 +29,10 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private boolean isRecruiting;
     @ApiModelProperty(value = "운동위치 주소명", example = "경기도 성남시 수정구~~~")
     private String addressName;
+    @ApiModelProperty(value = "00시",example = "00시")
+    private String region1Depth;
+    @ApiModelProperty(value = "00구",example = "00구")
+    private String region2Depth;
     @ApiModelProperty(value = "운동위치 x좌표")
     private String locationX;
     @ApiModelProperty(value = "운동위치 y좌표")
@@ -57,6 +61,8 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.needPeopleNum = posts.getNeedPeopleNum();
         this.isRecruiting = posts.isRecruiting();
         this.addressName = posts.getAddressName();
+        this.region1Depth = posts.getRegion1Depth();
+        this.region2Depth = posts.getRegion2Depth();
         this.placeName = posts.getPlaceName();
         this.eventTime = posts.getEventTime();
     }
