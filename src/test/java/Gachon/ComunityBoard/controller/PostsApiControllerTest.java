@@ -6,8 +6,10 @@ import Gachon.ComunityBoard.controller.dto.PostsSaveRequestDTO;
 import Gachon.ComunityBoard.controller.dto.PostsUpdateRequestDTO;
 import Gachon.ComunityBoard.domain.posts.Posts;
 import Gachon.ComunityBoard.domain.posts.PostsRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
@@ -15,13 +17,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -36,16 +44,32 @@ public class PostsApiControllerTest {
     @Autowired
     private PostsRepository postsRepository;
 
+    @Autowired
+    private WebApplicationContext context;
+
+    private MockMvc mvc;
+
+    @Before
+    public void setup(){
+        mvc = MockMvcBuilders
+                .webAppContextSetup(context)
+                .apply(springSecurity())
+                .build();
+    }
+
+
+
     @After
     public void afterEach(){
         postsRepository.deleteAll();
     }
 
-    @Test
+    // 세션키가져오는부분 없애야 성공공
+   @Test
+    @WithMockUser(roles = "USER")
     public void 게시글등록() throws Exception{
         //given
         String title = "제목테스트";
-        String writer = "vaaa";
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
@@ -56,7 +80,7 @@ public class PostsApiControllerTest {
         PostsSaveRequestDTO saveRequestDTO = PostsSaveRequestDTO.builder()
                 .title(title).content(content).event(event)
                 .needPeopleNumber(needPeople)
-                .location_x(location_x).location_y(location_y)
+                .locationX(location_x).locationY(location_y)
                 .placeName(placeName)
                 .build();
 
@@ -65,11 +89,15 @@ public class PostsApiControllerTest {
 
 
         //when
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url,saveRequestDTO,Long.class);
+//        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url,saveRequestDTO,Long.class);
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(saveRequestDTO)))
+                .andExpect(status().isOk());
 
         //then
-        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        Assertions.assertThat(responseEntity.getBody()).isGreaterThan(0L);
+//        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        Assertions.assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         List<Posts> all = postsRepository.findAll();
         Assertions.assertThat(all.get(0).getTitle()).isEqualTo(title);
@@ -77,6 +105,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     public void 게시글_수정() throws Exception{
         //given
         String title = "제목테스트";
@@ -84,7 +113,7 @@ public class PostsApiControllerTest {
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
-        int location = 10;
+        String location = "10";
 
 
         // 저장하고 저장된 Posts를 반환해서 savedPosts에 저장
@@ -130,6 +159,7 @@ public class PostsApiControllerTest {
 
 
     @Test
+    @WithMockUser(roles = "USER")
     public void 게시글_삭제() throws Exception{
         //given
         String title = "제목테스트";
@@ -137,7 +167,7 @@ public class PostsApiControllerTest {
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
-        double location = 10;
+        String location = "10";
 
 
         // 저장하고 저장된 Posts를 반환해서 savedPosts에 저장

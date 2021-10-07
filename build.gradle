@@ -45,6 +45,8 @@ dependencies {
 	runtimeOnly 'com.h2database:h2' //RuntimeOnly인지 implemetation인지?
 
 	implementation 'org.apache.commons:commons-lang3'
+
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {

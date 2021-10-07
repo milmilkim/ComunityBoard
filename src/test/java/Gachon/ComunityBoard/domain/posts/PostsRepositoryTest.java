@@ -31,7 +31,7 @@ public class PostsRepositoryTest {
         String content = "Content good!";
         String event = "baseball";
         int needPeople = 2;
-        double location = 10;
+        String location = "10";
 
         postsRepository.save(Posts.builder()
                 .title(title).writer(writer).content(content).event(event).needPeopleNumber(needPeople).location_x(location).location_y(location)

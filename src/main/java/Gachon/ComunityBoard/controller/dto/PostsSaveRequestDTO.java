@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
  * 게시물 저장시 게시물저장api에 전달되는 DTO입니다
  * */
 
-@ApiModel(value = "",description = "")
 @Getter
 @NoArgsConstructor
 public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
@@ -46,12 +45,12 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
 
 
     @Builder
-    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNumber, String locationX ,String locationY,
+    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNum, String locationX ,String locationY,
                                String addressName,String region1Depth,String region2Depth,String placeName ,String eventTime){
         this.title = title;
         this.content = content;
         this.event = event;
-        this.needPeopleNum = needPeopleNumber;
+        this.needPeopleNum = needPeopleNum;
         this.locationX = locationX;
         this.locationY = locationY;
         this.addressName = addressName;
@@ -69,8 +68,8 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
     public Posts toEntity(){ // Posts객체를 이 DTO안의 내용을 바탕으로 만들어서 반환
         return Posts.builder()
                 .title(title).writer(writer).email(email).content(content).event(event)
-                .needPeopleNumber(needPeopleNum).location_x(locationX)
-                .location_y(locationY).addressName(addressName).region1Depth(region1Depth)
+                .needPeopleNum(needPeopleNum).locationX(locationX)
+                .locationY(locationY).addressName(addressName).region1Depth(region1Depth)
                 .region2Depth(region2Depth).placeName(placeName).eventTime(eventTime)
                 .build();
     }
