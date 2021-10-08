@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
-@CrossOrigin
 @RequiredArgsConstructor
 @RestController
 public class UserInfoApiController {
@@ -21,6 +20,7 @@ public class UserInfoApiController {
     private final UserRepository userRepository;
 
     // 유저정보 조회
+    @CrossOrigin
     @ApiOperation(value = "유저 조회",notes = "email에 해당하는 유저를 조회합니다")
     @GetMapping("/api/user/userInfo/{email}")
     public UserResponseDTO findByEmail(@PathVariable String email, HttpSession session){
@@ -39,6 +39,7 @@ public class UserInfoApiController {
     }
 
     // 유저 정보 수정
+    @CrossOrigin
     @ApiOperation(value = "사용자 정보 수정",notes = "사용자 정보를 수정합니다.")
     @PutMapping("/api/user/userInfo/{email}")
     public String update(@PathVariable String email, @RequestBody UserUpdateRequestDTO updateDTO){
@@ -51,13 +52,14 @@ public class UserInfoApiController {
     }
 
     // 닉네임수정 중복확인 (유저정보 수정시 사용)
+    @CrossOrigin
     @ApiOperation(value = "닉네임변경 중복체크",notes = "닉네임을 변경할때 중복인지를 검사합니다")
     @GetMapping("/api/user/userInfo/DuplicateCheck/{nickname}")
     public boolean nicknameDuplicateCheck(@PathVariable String nickname){
         // false 리턴되면 중복된것. true가 리턴되면 중복안된것
         return userService.nicknameCheck(nickname);
     }
-
+    @CrossOrigin
     @GetMapping("/api/loginedUser")
     public String LoginedUserEmail(@LoginUser SessionUser user){
         if(user != null){
