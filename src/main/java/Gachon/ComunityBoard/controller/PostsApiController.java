@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
+@CrossOrigin
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {

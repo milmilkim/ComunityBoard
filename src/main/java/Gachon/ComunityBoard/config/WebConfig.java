@@ -21,11 +21,11 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     //cors문제 임시대책
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("http://localhost:3000");
+//    }
 
 
 
