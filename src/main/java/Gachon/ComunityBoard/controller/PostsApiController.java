@@ -44,23 +44,25 @@ public class PostsApiController {
         return postsService.save(saveDTO);
     }
 
-
+    //    public PostsResponseDTO findById(@PathVariable Long idx,@LoginUser SessionUser user){
     // 게시글 조회
     @ApiOperation(value = "게시글 조회",notes = "idx에 해당하는 게시물을 조회합니다")
     @GetMapping("/api/board/posts/{idx}")
-    public PostsResponseDTO findById(@PathVariable Long idx,@LoginUser SessionUser user){
+    public PostsResponseDTO findById(@PathVariable Long idx){
 //        SessionUser user = (SessionUser) session.getAttribute("user");
-        String postsEmail = postsRepository.findById(idx).get().getEmail();
+//        String postsEmail = postsRepository.findById(idx).get().getEmail();
 
         PostsResponseDTO postsResponseDTO = postsService.findById(idx);
         // 만약 같으면 자신이쓴글이라는거랑 같이 리턴
-        if(user.getEmail().equals(postsEmail)){
-            postsResponseDTO.setMine(true);
-            return postsResponseDTO;
-        }else {
-            postsResponseDTO.setMine(false);
-            return postsResponseDTO;
-        }
+//        if(user.getEmail().equals(postsEmail)){
+//            postsResponseDTO.setMine(true);
+//            return postsResponseDTO;
+//        }else {
+//            postsResponseDTO.setMine(false);
+//            return postsResponseDTO;
+//        }
+        postsResponseDTO.setMine(false);
+        return postsResponseDTO;
 
     }
 
