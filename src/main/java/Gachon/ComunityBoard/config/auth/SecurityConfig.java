@@ -26,10 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().permitAll()
                 .and()
                     .logout()
-                        .logoutSuccessUrl("http://together2021.dothome.co.kr/")
+                        .logoutSuccessUrl("/api/board")
                 .and()
                     .oauth2Login()
-                    .defaultSuccessUrl("http://together2021.dothome.co.kr/")
+                    .defaultSuccessUrl("/api/board")
                         .userInfoEndpoint()
                             .userService(customOAuth2UserService);
 
