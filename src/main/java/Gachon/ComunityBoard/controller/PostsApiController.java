@@ -29,7 +29,6 @@ public class PostsApiController {
     private final PostsRepository postsRepository;
 
     // 게시글 등록
-    @CrossOrigin
     @ApiOperation(value = "게시글 등록",notes = "게시글을 등록합니다")
     @PostMapping("/api/board/posts")
     public Long save(@RequestBody PostsSaveRequestDTO saveDTO){
@@ -46,7 +45,6 @@ public class PostsApiController {
 
 
     // 게시글 조회
-    @CrossOrigin
     @ApiOperation(value = "게시글 조회",notes = "idx에 해당하는 게시물을 조회합니다")
     @GetMapping("/api/board/posts/{idx}")
     public PostsResponseDTO findById(@PathVariable Long idx,HttpSession session){
@@ -67,7 +65,6 @@ public class PostsApiController {
 
 
     // 게시글 수정
-    @CrossOrigin
     @ApiOperation(value = "게시글 수정",notes = "idx에 해당하는 게시물을 넘겨받은 DTO를 기반으로 수정합니다")
     @PutMapping("/api/board/posts/{idx}")
     public Long update(@PathVariable Long idx, @RequestBody PostsUpdateRequestDTO updateDTO){
@@ -82,7 +79,6 @@ public class PostsApiController {
 //        return idx;
 //    }
     // 게시글 삭제
-    @CrossOrigin
     @ApiOperation(value = "게시글 삭제",notes = "idx에 해당하는 게시글을 삭제합니다")
     @PutMapping("/api/board/posts/{idx}/isDelete")
     public Long delete(@PathVariable Long idx){
@@ -91,7 +87,6 @@ public class PostsApiController {
         return idx;
     }
 
-    @CrossOrigin
     @ApiOperation(value = "게시물 모집 종료",notes = "idx에 해당하는 게시물의 모집을 종료합니다.")
     @PutMapping("/api/board/posts/{idx}/endRecruiting")
     public Long endRecruiting(@PathVariable Long idx){

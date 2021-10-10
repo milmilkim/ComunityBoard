@@ -34,8 +34,7 @@ public class PagingController {
 //    }
 
     // 잠시만 동결 PostsService로 이동
-    //전체 게시물 역순으로보여줌
-    @CrossOrigin
+    //전체 게시물 역순으로보여줌@CrossOrigin
     @ApiOperation(value = "전체게시물 조회(페이징)",notes = "전체 게시물을 한페이지에 12개씩 생성시간 역순으로 보여줍니다")
     @GetMapping("/api/board")
     public Page<PostsListResponseDTO> paging(@PageableDefault(size = 12, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
@@ -50,7 +49,7 @@ public class PagingController {
     }
     ////http://localhost:8080/api/board?page=0&size=5 이런식으로 호출
 
-    @CrossOrigin
+
     @ApiOperation(value = "게시물 검색",notes = "키워드에 해당하는 게시물을 조회합니다(제목,작성자,지역,종목)")
     @GetMapping("/api/board/search/{keyword}")
     public Page<PostsListResponseDTO> searchedPaging(@PathVariable("keyword") String keyword, @PageableDefault(size = 12, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
@@ -63,7 +62,7 @@ public class PagingController {
         );
         return pagingList;
     }
-    @CrossOrigin
+
     @GetMapping("/api/board/all")
     public List<PostsListResponseDTO> findAllDesc(){
         return postsRepository.findAllDesc().stream()
