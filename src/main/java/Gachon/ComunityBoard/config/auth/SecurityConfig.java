@@ -3,9 +3,13 @@ package Gachon.ComunityBoard.config.auth;
 
 import Gachon.ComunityBoard.domain.user.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -16,7 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .csrf().disable()
-                .headers().frameOptions().disable()
+                .cors().configurationSource(corsConfigurationSource())
+                //.headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()
 //                    .antMatchers("/**","/css/**","/js/**","/images/**","/api/board/search/**","/api/board/all","/api/loginedUser").permitAll()// 모두에게 허용
@@ -33,6 +38,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .userInfoEndpoint()
                             .userService(customOAuth2UserService);
 
+    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
 }
