@@ -77,27 +77,27 @@ public class PagingController {
 
 
     // 더미데이터 생성
-    @PostConstruct
-    public void initializing(){
-
-        for (int i = 0; i < 100; i++) {
-            Posts posts = Posts.builder()
-                    .title(i+"번 게시글")
-                    .content(i+"내용내용")
-                    .writer("김승환")
-                    .build();
-            postsRepository.save(posts);
-        }
-        for (int i = 100; i < 113; i++) {
-            Posts posts = Posts.builder()
-                    .title(i+"번 게시글")
-                    .content(i+"내용내용")
-                    .writer("김승환")
-                    .event("야구야구")
-                    .build();
-            postsRepository.save(posts);
-        }
-    }
+//    @PostConstruct
+//    public void initializing(){
+//
+//        for (int i = 0; i < 100; i++) {
+//            Posts posts = Posts.builder()
+//                    .title(i+"번 게시글")
+//                    .content(i+"내용내용")
+//                    .writer("김승환")
+//                    .build();
+//            postsRepository.save(posts);
+//        }
+//        for (int i = 100; i < 113; i++) {
+//            Posts posts = Posts.builder()
+//                    .title(i+"번 게시글")
+//                    .content(i+"내용내용")
+//                    .writer("김승환")
+//                    .event("야구야구")
+//                    .build();
+//            postsRepository.save(posts);
+//        }
+//    }
 
 
 }
