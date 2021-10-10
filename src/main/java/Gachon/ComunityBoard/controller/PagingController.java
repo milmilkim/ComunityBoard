@@ -76,7 +76,7 @@ public class PagingController {
     //@Param으로했다가 2시간삽질하고 @PathVariable로바꿔서해결 JPA만세세
 
 
-//    // 더미데이터 생성
+    // 더미데이터 생성
 //    @PostConstruct
 //    public void initializing(){
 //
@@ -88,7 +88,7 @@ public class PagingController {
 //                    .build();
 //            postsRepository.save(posts);
 //        }
-//        for (int i = 0; i < 13; i++) {
+//        for (int i = 100; i < 113; i++) {
 //            Posts posts = Posts.builder()
 //                    .title(i+"번 게시글")
 //                    .content(i+"내용내용")
