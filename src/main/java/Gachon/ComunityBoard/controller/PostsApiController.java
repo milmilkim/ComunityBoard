@@ -1,6 +1,7 @@
 package Gachon.ComunityBoard.controller;
 
 
+import Gachon.ComunityBoard.config.auth.LoginUser;
 import Gachon.ComunityBoard.config.auth.dto.SessionUser;
 import Gachon.ComunityBoard.controller.dto.*;
 import Gachon.ComunityBoard.domain.posts.Posts;
@@ -47,8 +48,8 @@ public class PostsApiController {
     // 게시글 조회
     @ApiOperation(value = "게시글 조회",notes = "idx에 해당하는 게시물을 조회합니다")
     @GetMapping("/api/board/posts/{idx}")
-    public PostsResponseDTO findById(@PathVariable Long idx,HttpSession session){
-        SessionUser user = (SessionUser) session.getAttribute("user");
+    public PostsResponseDTO findById(@PathVariable Long idx,@LoginUser SessionUser user){
+//        SessionUser user = (SessionUser) session.getAttribute("user");
         String postsEmail = postsRepository.findById(idx).get().getEmail();
 
         PostsResponseDTO postsResponseDTO = postsService.findById(idx);
