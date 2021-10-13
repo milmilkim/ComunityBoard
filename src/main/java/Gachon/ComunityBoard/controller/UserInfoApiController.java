@@ -67,6 +67,17 @@ public class UserInfoApiController {
             return "";
         }
     }
+//
+//    @GetMapping("/api/loginedUser")
+//    public String LoginedUserEmail(){
+//
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+//        if(user != null){
+//            return user.getEmail();
+//        }else{
+//            return "";
+//        }
+//    }
 
 
 
