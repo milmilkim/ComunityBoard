@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'junit:junit:4.12'
@@ -27,6 +28,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	// OAuth 의존성(소셜로그인시 필요)
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	//토큰관련
+	implementation 'javax.xml.bind:jaxb-api'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
