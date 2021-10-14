@@ -47,10 +47,11 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
 
 
     @Builder
-    public PostsSaveRequestDTO(String title,String content, String event, int needPeopleNum, String locationX ,String locationY,
+    public PostsSaveRequestDTO(String title,String email,String content, String event, int needPeopleNum, String locationX ,String locationY,
                                String addressName,String region1Depth,String region2Depth,String placeName ,String eventTime){
         this.title = title;
         this.content = content;
+        this.email = email;
         this.event = event;
         this.needPeopleNum = needPeopleNum;
         this.locationX = locationX;
@@ -62,9 +63,9 @@ public class PostsSaveRequestDTO { // 저장요청할때 쓰는 DTO
         this.eventTime = eventTime;
     }
 
-    public void setWriterAndEamil(String writer,String email,String userPicture) {
+    public void setWriterAndEamil(String writer,String userPicture) {
         this.writer = writer;
-        this.email = email;
+
         this.userPicture = userPicture;
     }
 

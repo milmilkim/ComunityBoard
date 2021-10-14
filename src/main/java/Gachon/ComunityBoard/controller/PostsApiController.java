@@ -33,14 +33,13 @@ public class PostsApiController {
     @ApiOperation(value = "게시글 등록",notes = "게시글을 등록합니다")
     @PostMapping("/api/board/posts")
     public Long save(@RequestBody PostsSaveRequestDTO saveDTO){
-        // 세션에서 지금 로그인한 유저의 정보를 가져옴
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        // 그 유저의 이메일을 가저옴
-        String userEmail = user.getEmail();
+
+        //저장 요청하는 유저의 이메일을 가져옴
+        String userEmail = saveDTO.getEmail();
         // 그 이메일로 유저의 DB정보를가져옴
         User userDB = userRepository.findByUserEmail(userEmail);
         // 가저온 DB정보안에있는 해당유저의 닉네임과 이메일을 가져와서 DTO에 추가해줌
-        saveDTO.setWriterAndEamil(userDB.getNickname(), userEmail,userDB.getPicture());
+        saveDTO.setWriterAndEamil(userDB.getNickname(),userDB.getPicture());
         return postsService.save(saveDTO);
     }
 

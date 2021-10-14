@@ -31,12 +31,12 @@ public class UserResponseDTO {
     @ApiModelProperty(value = "선호운동3",example = "농구")
     private String preference3;
 
-    @ApiModelProperty(value = "내 user page인가 확인")
-    private boolean mine;
+//    @ApiModelProperty(value = "내 user page인가 확인")
+//    private boolean mine;
 
-    public void setMine(boolean mine) {
-        this.mine = mine;
-    }
+//    //public void setMine(boolean mine) {
+//        this.mine = mine;
+//    }
 
     public UserResponseDTO(User user){
         this.nickname = user.getNickname();
