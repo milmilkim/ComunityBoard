@@ -33,8 +33,13 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String targetUri = determineTargetUrl(request, response, authentication);
+//        String targetUri = determineTargetUrl(request, response, authentication);
 
+
+        //서버 배포용
+        String targetUriFront = "https://healthtohether.cafe24.com";
+        // 프론트 로컬용
+        //String targetUriFront = "http://localhost:3000";
         OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
         UserDto userDto = userRequestMapper.toDto(oAuth2User);
 
@@ -42,6 +47,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         log.info("{}", token);
 
         response =writeTokenResponse(response,token);
+
+        String targetUri = UriComponentsBuilder.fromUriString(targetUriFront).queryParam("token", token).build().toUriString();
 
         getRedirectStrategy().sendRedirect(request, response, targetUri);
     }
