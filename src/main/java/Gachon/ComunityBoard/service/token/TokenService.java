@@ -41,7 +41,7 @@ public class TokenService {
         long refreshPeriod = 1000L * 60L * 60L * 24L * 30L * 3L;
         User user = userRepository.findByUserEmail(uid);
         Claims claims = Jwts.claims().setSubject(uid);
-        claims.put("nickname",user.getNickname());
+        //claims.put("nickname",user.getNickname());
         claims.put("role",role);
 
         Date now = new Date();
