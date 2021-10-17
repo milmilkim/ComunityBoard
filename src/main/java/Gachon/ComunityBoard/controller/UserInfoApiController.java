@@ -40,12 +40,13 @@ public class UserInfoApiController {
     @ApiOperation(value = "사용자 정보 수정",notes = "사용자 정보를 수정합니다.")
     @PutMapping("/api/user/userInfo/{email}")
     public String update(@PathVariable String email, @RequestBody UserUpdateRequestDTO updateDTO){
-        //중복된닉네임이면 예외발생
-        if(userService.nicknameCheck(updateDTO.getNickname())){
-            return userService.update(email, updateDTO);
-        }else {
-            return "닉네임이 중복된 값입니다.";
-        }
+        //중복된닉네임이면 예외발생 이부분 지금 문제 셤끝나고 해결
+//        if(userService.nicknameCheck(updateDTO.getNickname())){
+//            return userService.update(email, updateDTO);
+//        }else {
+//            return "닉네임이 중복된 값입니다.";
+//        }
+        return userService.update(email, updateDTO);
     }
 
     // 닉네임수정 중복확인 (유저정보 수정시 사용)
@@ -57,14 +58,14 @@ public class UserInfoApiController {
         return userService.nicknameCheck(nickname);
     }
 
-    @GetMapping("/api/loginedUser")
-    public String LoginedUserEmail(@LoginUser SessionUser user){
-        if(user != null){
-            return user.getEmail();
-        }else{
-            return "";
-        }
-    }
+//    @GetMapping("/api/loginedUser")
+//    public String LoginedUserEmail(@LoginUser SessionUser user){
+//        if(user != null){
+//            return user.getEmail();
+//        }else{
+//            return "";
+//        }
+//    }
 //
 //    @GetMapping("/api/loginedUser")
 //    public String LoginedUserEmail(){
