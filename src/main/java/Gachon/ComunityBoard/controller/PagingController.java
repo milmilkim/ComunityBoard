@@ -63,6 +63,17 @@ public class PagingController {
         return pagingList;
     }
 
+    @ApiOperation(value = "게시물 전체조회",notes = "삭제안된 모든 게시물을 조회합니다")
+    @GetMapping("/api/board/allposts")
+    public List<PostsListResponseDTO> findAllNotDeleted(){
+        return postsRepository.findAllNotDeleted().stream()
+                .map(PostsListResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
+
+
     @GetMapping("/api/board/all")
     public List<PostsListResponseDTO> findAllDesc(){
         return postsRepository.findAllDesc().stream()
