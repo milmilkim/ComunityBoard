@@ -37,9 +37,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 
         //서버 배포용
-        //String targetUriFront = "https://healthtohether.cafe24.com";
+        String targetUriFront = "https://healthtohether.cafe24.com";
         // 프론트 로컬용
-        String targetUriFront = "http://localhost:3000";
+        //String targetUriFront = "http://localhost:3000";
         OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
         UserDto userDto = userRequestMapper.toDto(oAuth2User);
 
