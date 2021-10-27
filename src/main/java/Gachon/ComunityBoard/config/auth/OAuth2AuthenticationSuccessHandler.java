@@ -58,9 +58,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
 
         //서버 배포용
-        //String targetUri = "https://healthtohether.cafe24.com";
+        String targetUri = "https://healthtohether.cafe24.com";
         // 프론트 로컬용
-        String targetUri = "http://localhost:3000";
+        //String targetUri = "http://localhost:3000";
         //HttpSession session = request.getSession();
         //String sessionId = Base64.getEncoder().encodeToString(session.getId().getBytes());
 
