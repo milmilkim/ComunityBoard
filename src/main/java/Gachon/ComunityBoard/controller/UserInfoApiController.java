@@ -21,24 +21,24 @@ public class UserInfoApiController {
 
     // 유저정보 조회
 
-//    @ApiOperation(value = "유저 조회",notes = "email에 해당하는 유저를 조회합니다")
-//    @GetMapping("/api/user/userInfo/{email}")
-//    public UserResponseDTO findByEmail(@PathVariable String email){
-//        // 조회대상 사람
-//        UserResponseDTO userResponseDTO = userService.findByEamil(email);
-//
-//        // 조회하려는사람과 조회대상이 같다면(내 프로필을 보려한다면)
-////        if(user.getEmail().equals(userResponseDTO.getEmail())){
-////            userResponseDTO.setMine(true); // 수정버튼 보이게
-////        }else{
-////            userResponseDTO.setMine(false); // 수정버튼 안보이게
-////        }
-//        return userResponseDTO;
-//    }
+    @ApiOperation(value = "유저 조회",notes = "email에 해당하는 유저를 조회합니다")
+    @GetMapping("/api/user/userInfo/{email}")
+    public UserResponseDTO findByEmail(@PathVariable String email){
+        // 조회대상 사람
+        UserResponseDTO userResponseDTO = userService.findByEamil(email);
+
+        // 조회하려는사람과 조회대상이 같다면(내 프로필을 보려한다면)
+//        if(user.getEmail().equals(userResponseDTO.getEmail())){
+//            userResponseDTO.setMine(true); // 수정버튼 보이게
+//        }else{
+//            userResponseDTO.setMine(false); // 수정버튼 안보이게
+//        }
+        return userResponseDTO;
+    }
 
 
     @ApiOperation(value = "유저 조회",notes = "id에 해당하는 유저를 조회합니다")
-    @GetMapping("/api/user/userInfo/{id}")
+    @GetMapping("/api/user/userInfo/id/{id}")
     public UserResponseDTO findById(@PathVariable Long id){
         // 조회대상 사람
         UserResponseDTO userResponseDTO = userService.findById(id);
