@@ -17,6 +17,8 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
     private String title;
     @ApiModelProperty(value = "작성자")
     private String writer;
+    @ApiModelProperty(value = "작성자id")
+    private Long uid;
     @ApiModelProperty(value = "작성자email")
     private String email;
     @ApiModelProperty(value = "작성자 프로필")
@@ -55,6 +57,7 @@ public class PostsResponseDTO {// 게시물 조회할때 쓰는 DTO
         this.idx = posts.getIdx();
         this.title = posts.getTitle();
         this.writer = posts.getWriter();
+        this.uid = posts.getUid();
         this.userPicture = posts.getUserPicture();
         this.email = posts.getEmail();
         this.locationX = posts.getLocationX();
