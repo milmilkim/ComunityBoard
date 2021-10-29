@@ -40,8 +40,9 @@ public class TokenService {
 
         long refreshPeriod = 1000L * 60L * 60L * 24L * 30L * 3L;
         User user = userRepository.findByUserEmail(uid);
+        // 토큰에 정보담아주기
         Claims claims = Jwts.claims().setSubject(uid);
-        //claims.put("nickname",user.getNickname());
+        claims.put("userID",user.getId());
         claims.put("role",role);
 
         Date now = new Date();
