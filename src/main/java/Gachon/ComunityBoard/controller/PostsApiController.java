@@ -39,7 +39,7 @@ public class PostsApiController {
         // 그 이메일로 유저의 DB정보를가져옴
         User userDB = userRepository.findByUserEmail(userEmail);
         // 가저온 DB정보안에있는 해당유저의 닉네임과 이메일을 가져와서 DTO에 추가해줌
-        saveDTO.setWriterAndEamil(userDB.getNickname(),userDB.getPicture(),userDB.getId());
+        saveDTO.setWriterAndEamil(userDB.getNickname(),userDB.getPicture());
         return postsService.save(saveDTO);
     }
 

@@ -21,8 +21,6 @@ public class Posts extends BaseTimeEntity {
 
     private String writer;  //게시물 작성자
 
-    private Long uid;
-
     private String userPicture; // 작성자 사진
 
     private String email;
@@ -54,13 +52,13 @@ public class Posts extends BaseTimeEntity {
     private boolean deleteYn;
 
     @Builder
-    public Posts(String title, String writer,Long uid,String email,String content, String event
+    public Posts(String title, String writer,String email,String content, String event
             ,int needPeopleNum, String locationX,String locationY
             ,String addressName,String region1Depth,String region2Depth,String placeName
             , String eventTime, String userPicture){
         this.title=title;
         this.writer=writer;
-        this.uid = uid;
+
         this.userPicture = userPicture;
         this.email = email;
         this.content = content;
