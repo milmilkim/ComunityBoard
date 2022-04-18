@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -32,7 +34,7 @@ public class PagingController {
 //    }
 
     // 잠시만 동결 PostsService로 이동
-    //전체 게시물 역순으로보여줌
+    //전체 게시물 역순으로보여줌@CrossOrigin
     @ApiOperation(value = "전체게시물 조회(페이징)",notes = "전체 게시물을 한페이지에 12개씩 생성시간 역순으로 보여줍니다")
     @GetMapping("/api/board")
     public Page<PostsListResponseDTO> paging(@PageableDefault(size = 12, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
@@ -47,6 +49,7 @@ public class PagingController {
     }
     ////http://localhost:8080/api/board?page=0&size=5 이런식으로 호출
 
+
     @ApiOperation(value = "게시물 검색",notes = "키워드에 해당하는 게시물을 조회합니다(제목,작성자,지역,종목)")
     @GetMapping("/api/board/search/{keyword}")
     public Page<PostsListResponseDTO> searchedPaging(@PathVariable("keyword") String keyword, @PageableDefault(size = 12, sort = "createdDate",direction = Sort.Direction.DESC) Pageable pageRequest){
@@ -59,6 +62,17 @@ public class PagingController {
         );
         return pagingList;
     }
+
+    @ApiOperation(value = "게시물 전체조회",notes = "삭제안된 모든 게시물을 조회합니다")
+    @GetMapping("/api/board/allposts")
+    public List<PostsListResponseDTO> findAllNotDeleted(){
+        return postsRepository.findAllNotDeleted().stream()
+                .map(PostsListResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
+
 
     @GetMapping("/api/board/all")
     public List<PostsListResponseDTO> findAllDesc(){
@@ -73,27 +87,25 @@ public class PagingController {
 
 
     // 더미데이터 생성
-    @PostConstruct
-    public void initializing(){
-
-        for (int i = 0; i < 100; i++) {
-            Posts posts = Posts.builder()
-                    .title(i+"번 게시글")
-                    .content(i+"내용내용")
-                    .writer("김승환")
-                    .build();
-            postsRepository.save(posts);
-        }
-        for (int i = 0; i < 13; i++) {
-            Posts posts = Posts.builder()
-                    .title(i+"번 게시글")
-                    .content(i+"내용내용")
-                    .writer("김승환")
-                    .event("야구야구")
-                    .build();
-            postsRepository.save(posts);
-        }
-    }
-
-
+//    @PostConstruct
+//    public void initializing(){
+//
+//        for (int i = 0; i < 100; i++) {
+//            Posts posts = Posts.builder()
+//                    .title(i+"번 게시글")
+//                    .content(i+"내용내용")
+//                    .writer("김승환")
+//                    .build();
+//            postsRepository.save(posts);
+//        }
+//        for (int i = 100; i < 113; i++) {
+//            Posts posts = Posts.builder()
+//                    .title(i+"번 게시글")
+//                    .content(i+"내용내용")
+//                    .writer("김승환")
+//                    .event("야구야구")
+//                    .build();
+//            postsRepository.save(posts);
+//        }
+//    }
 }

@@ -15,7 +15,7 @@ public interface PostsRepository extends JpaRepository<Posts,Long> {
     List<Posts> findAllDesc();
 
     // Delete_YN이 false인 값만 조회(삭제 안된것만 조회)
-    @Query("SELECT p FROM Posts p WHERE p.deleteYn = false")
+    @Query("SELECT p FROM Posts p WHERE p.deleteYn = false AND p.isRecruiting = true")
     List<Posts> findAllNotDeleted();
 
 

@@ -18,6 +18,8 @@ public class UserResponseDTO {
     private String nickname;
     @ApiModelProperty(value = "유저 이메일", example = "hello@gachon.ac.kr")
     private String email;
+    @ApiModelProperty(value = "유저 id")
+    private Long id;
     @ApiModelProperty(value = "유저 사진")
     private String picture;
     @ApiModelProperty(value = "자기소개",example = "안녕하세요 반갑습니다!")
@@ -31,16 +33,17 @@ public class UserResponseDTO {
     @ApiModelProperty(value = "선호운동3",example = "농구")
     private String preference3;
 
-    @ApiModelProperty(value = "내 user page인가 확인")
-    private boolean mine;
+//    @ApiModelProperty(value = "내 user page인가 확인")
+//    private boolean mine;
 
-    public void setMine(boolean mine) {
-        this.mine = mine;
-    }
+//    //public void setMine(boolean mine) {
+//        this.mine = mine;
+//    }
 
     public UserResponseDTO(User user){
         this.nickname = user.getNickname();
         this.email = user.getEmail();
+        this.id = user.getId();
         this.picture = user.getPicture();
         this.selfIntroduction = user.getSelfIntroduction();
         this.livingPlace = user.getLivingPlace();

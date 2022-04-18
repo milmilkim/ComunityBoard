@@ -18,10 +18,17 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    // 이메일로 게시글 조회
+    // 이메일로 유저 조회
     public UserResponseDTO findByEamil(String email){
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new IllegalArgumentException("해당 유저가 없습니다. email = "+email));
+        return new UserResponseDTO(user);
+    }
+
+    // id로 유저 조회
+    public UserResponseDTO findById(Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 유저가 없습니다. id = "+id));
         return new UserResponseDTO(user);
     }
 

@@ -58,6 +58,7 @@ public class Posts extends BaseTimeEntity {
             , String eventTime, String userPicture){
         this.title=title;
         this.writer=writer;
+
         this.userPicture = userPicture;
         this.email = email;
         this.content = content;
